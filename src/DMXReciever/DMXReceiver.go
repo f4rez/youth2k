@@ -1,15 +1,22 @@
 package DMXReciever
 
 import (
+	"github.com/tarm/serial"
 	"log"
+	"net"
 	"strconv"
 	"strings"
-
-	"github.com/tarm/serial"
 )
 
 type DmxSignal struct {
 	R, G, B int
+}
+
+func CheckError(err error) {
+	if err != nil {
+		log.Println("Error: ", err)
+
+	}
 }
 
 func ReadSerial(dmxChan chan DmxSignal, qChan chan bool) {
@@ -72,4 +79,38 @@ func ReadSerial(dmxChan chan DmxSignal, qChan chan bool) {
 		}
 	}
 
+}
+
+func ReadArtnet(dmxChan chan DmxSignal) {
+	log.Println("UDP readArtnet")
+	ServerAddr, err := net.ResolveUDPAddr("udp", ":6454")
+	CheckError(err)
+
+	/* Now listen at selected port */
+	ServerConn, err := net.ListenUDP("udp", ServerAddr)
+	CheckError(err)
+	defer ServerConn.Close()
+
+	dmxOutput := make([]byte, 1024)
+
+	rr := -1
+	bb := -1
+	gg := -1
+	log.Println("Listning for UDP")
+	for {
+		_, _, err := ServerConn.ReadFromUDP(dmxOutput)
+		log.Println("new Message")
+		r := int(dmxOutput[18])
+		g := int(dmxOutput[19])
+		b := int(dmxOutput[20])
+
+		if err != nil {
+			log.Println("Error: ", err)
+		}
+			dmxChan <- DmxSignal{R: r, G: g, B: b}
+			rr = r
+			gg = g
+			bb = b
+		}
+	}
 }
