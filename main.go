@@ -2,10 +2,10 @@ package main
 
 import (
 	"github.com/gordonklaus/portaudio"
-	//"log"
+	"log"
 	"math"
-	"src/DMXReciever"
 	"time"
+	"youth2k/src/DMXReciever"
 )
 
 /*
@@ -30,7 +30,15 @@ import (
 
 */
 
-const sampleRate = 44100
+const (
+	numberOfPhases = 1000
+	sampleRate     = 44100
+	a              = 1.0                // height of curve's peak
+	b              = numberOfPhases / 2 // position of the peak
+	c              = 0.015              // standart deviation controlling width of the curve
+	startHz        = 18000
+	diffHz         = 1024
+)
 
 func main() {
 	dmxChan := make(chan DMXReciever.DmxSignal)
@@ -39,26 +47,30 @@ func main() {
 	portaudio.Initialize()
 	defer portaudio.Terminate()
 
-	sleepTime := 50 * time.Millisecond
+	sleepTime := 10 * time.Millisecond
+	index := 0
 	for {
 		dmx := <-dmxChan
-		first, second := makeColorHz(18000, dmx.R)
+		first, second := makeColorHz(startHz, dmx.R)
 		r := newStereoSine(first, second, sampleRate)
 		chk(r.Start())
 		time.Sleep(sleepTime)
 		chk(r.Stop())
-		first, second = makeColorHz(19000, dmx.G)
+		r.Close()
+		first, second = makeColorHz(startHz+diffHz, dmx.G)
 		g := newStereoSine(first, second, sampleRate)
 		chk(g.Start())
 		time.Sleep(sleepTime)
 		chk(g.Stop())
-		first, second = makeColorHz(20000, dmx.B)
-
+		g.Close()
+		first, second = makeColorHz(startHz+diffHz*2, dmx.B)
 		b := newStereoSine(first, second, sampleRate)
-
 		chk(b.Start())
 		time.Sleep(sleepTime)
 		chk(b.Stop())
+		b.Close()
+		index++
+		log.Println(index, dmx)
 
 	}
 }
@@ -72,22 +84,22 @@ type stereoSine struct {
 func newStereoSine(freqL, freqR, sampleRate float64) *stereoSine {
 	s := &stereoSine{nil, freqL / sampleRate, 0, freqR / sampleRate, 0}
 	var err error
-	s.Stream, err = portaudio.OpenDefaultStream(0, 4, sampleRate, 44190/10, s.processAudio)
+	s.Stream, err = portaudio.OpenDefaultStream(0, 4, sampleRate, 44100/8, s.processAudio)
 	chk(err)
 	return s
 }
 
 func (g *stereoSine) processAudio(out [][]float32) {
-	numberOfPhases := 600.0
 	rP := 1.0
 	lP := 1.0
 	p := 0.0
-	diff := 0.01
+	diff := 0.0001
 	sL := false
 	sR := false
 	for i := range out[0] {
 		if !sL || lP < numberOfPhases {
 			out[0][i] = float32(math.Sin(2*math.Pi*g.phaseL)) * curveFunc(lP)
+			//log.Println(out[0][i], curveFunc(lP), lP)
 			p, g.phaseL = math.Modf(g.phaseL + g.stepL)
 			if p == 1 {
 				lP++
@@ -101,6 +113,9 @@ func (g *stereoSine) processAudio(out [][]float32) {
 		}
 		if !sR || rP < numberOfPhases {
 			out[1][i] = float32(math.Sin(2*math.Pi*g.phaseR)) * curveFunc(lP)
+			if rP == 1 || rP == b || rP == numberOfPhases-1 {
+				log.Println("rP", out[1][i], curveFunc(rP), rP)
+			}
 			p, g.phaseR = math.Modf(g.phaseR + g.stepR)
 			if p == 1 {
 				rP++
@@ -114,11 +129,12 @@ func (g *stereoSine) processAudio(out [][]float32) {
 	}
 }
 
-func makeColorHz(start int, color int) (int, int) {
+func makeColorHz(start int, color int) (float64, float64) {
 	first := color % 16
 	second := color / 16
 	first = start + first*64
 	second = start + 1000 + second*64
+	return float64(first), float64(second)
 }
 
 func chk(err error) {
@@ -126,13 +142,6 @@ func chk(err error) {
 		panic(err)
 	}
 }
-
-const (
-	a = 1.0   // height of curve's peak
-	b = 300   // position of the peak
-	c = 0.008 // standart deviation controlling width of the curve
-	//( lower abstract value of c -> "longer" curve)
-)
 
 func curveFunc(x float64) float32 {
 	return float32(a * math.Exp(-math.Pow(x-b, 2)/2.0*math.Pow(c, 2)))

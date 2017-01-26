@@ -93,13 +93,10 @@ func ReadArtnet(dmxChan chan DmxSignal) {
 
 	dmxOutput := make([]byte, 1024)
 
-	rr := -1
-	bb := -1
-	gg := -1
 	log.Println("Listning for UDP")
+	numberOfDropped := 0
 	for {
 		_, _, err := ServerConn.ReadFromUDP(dmxOutput)
-		log.Println("new Message")
 		r := int(dmxOutput[18])
 		g := int(dmxOutput[19])
 		b := int(dmxOutput[20])
@@ -107,10 +104,14 @@ func ReadArtnet(dmxChan chan DmxSignal) {
 		if err != nil {
 			log.Println("Error: ", err)
 		}
-			dmxChan <- DmxSignal{R: r, G: g, B: b}
-			rr = r
-			gg = g
-			bb = b
+		select {
+		case dmxChan <- DmxSignal{R: r, G: g, B: b}:
+			log.Println("Got to send, number of droppend:", numberOfDropped)
+			numberOfDropped = 0
+		default:
+			numberOfDropped++
+
 		}
+
 	}
 }
