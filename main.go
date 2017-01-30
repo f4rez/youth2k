@@ -1,11 +1,15 @@
 package main
 
 import (
-	"github.com/gordonklaus/portaudio"
 	"log"
 	"math"
+	"os"
+	"strconv"
 	"time"
+
 	"youth2k/src/DMXReciever"
+
+	"github.com/gordonklaus/portaudio"
 )
 
 /*
@@ -31,14 +35,36 @@ import (
 */
 
 const (
-	numberOfPhases = 1000
-	sampleRate     = 44100
-	a              = 1.0                // height of curve's peak
+	numberOfPhases = 500
+	sampleRate     = 193939
+	a              = 4.0                // height of curve's peak
 	b              = numberOfPhases / 2 // position of the peak
-	c              = 0.015              // standart deviation controlling width of the curve
+	c              = 0.035              // standart deviation controlling width of the curve
 	startHz        = 18000
 	diffHz         = 1024
+	plotSize       = 6000
 )
+
+var Arr = make([]float32, plotSize)
+
+func FloatToString(input_num float64) string {
+	// to convert a float number to a string
+	return strconv.FormatFloat(input_num, 'f', 6, 32)
+}
+
+func makePlot() {
+	sleepTime := 1000 * time.Millisecond
+
+	f, _ := os.Create("values.csv")
+	defer f.Close()
+	for i, v := range Arr {
+		f.WriteString(FloatToString(float64(v)))
+		f.WriteString(",")
+		f.WriteString(strconv.FormatInt(int64(i), 10))
+		f.WriteString("\n")
+	}
+	time.Sleep(sleepTime * 5000)
+}
 
 func main() {
 	dmxChan := make(chan DMXReciever.DmxSignal)
@@ -47,7 +73,7 @@ func main() {
 	portaudio.Initialize()
 	defer portaudio.Terminate()
 
-	sleepTime := 10 * time.Millisecond
+	sleepTime := 20 * time.Millisecond
 	index := 0
 	for {
 		dmx := <-dmxChan
@@ -56,6 +82,7 @@ func main() {
 		chk(r.Start())
 		time.Sleep(sleepTime)
 		chk(r.Stop())
+		makePlot()
 		r.Close()
 		first, second = makeColorHz(startHz+diffHz, dmx.G)
 		g := newStereoSine(first, second, sampleRate)
@@ -84,7 +111,7 @@ type stereoSine struct {
 func newStereoSine(freqL, freqR, sampleRate float64) *stereoSine {
 	s := &stereoSine{nil, freqL / sampleRate, 0, freqR / sampleRate, 0}
 	var err error
-	s.Stream, err = portaudio.OpenDefaultStream(0, 4, sampleRate, 44100/8, s.processAudio)
+	s.Stream, err = portaudio.OpenDefaultStream(0, 2, sampleRate, int(sampleRate/32), s.processAudio)
 	chk(err)
 	return s
 }
@@ -99,7 +126,7 @@ func (g *stereoSine) processAudio(out [][]float32) {
 	for i := range out[0] {
 		if !sL || lP < numberOfPhases {
 			out[0][i] = float32(math.Sin(2*math.Pi*g.phaseL)) * curveFunc(lP)
-			//log.Println(out[0][i], curveFunc(lP), lP)
+			//log.Println(out[0][i], curveFunc(lP), lP, g.stepL)
 			p, g.phaseL = math.Modf(g.phaseL + g.stepL)
 			if p == 1 {
 				lP++
@@ -108,14 +135,14 @@ func (g *stereoSine) processAudio(out [][]float32) {
 				sL = true
 
 			}
+
 		} else {
 			out[0][i] = 0
 		}
+
 		if !sR || rP < numberOfPhases {
 			out[1][i] = float32(math.Sin(2*math.Pi*g.phaseR)) * curveFunc(lP)
-			if rP == 1 || rP == b || rP == numberOfPhases-1 {
-				log.Println("rP", out[1][i], curveFunc(rP), rP)
-			}
+
 			p, g.phaseR = math.Modf(g.phaseR + g.stepR)
 			if p == 1 {
 				rP++
@@ -125,6 +152,9 @@ func (g *stereoSine) processAudio(out [][]float32) {
 			}
 		} else {
 			out[1][i] = 0
+		}
+		if i < plotSize {
+			Arr[i] = out[1][i]
 		}
 	}
 }
