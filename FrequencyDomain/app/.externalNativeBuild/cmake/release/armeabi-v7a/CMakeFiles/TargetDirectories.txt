@@ -1,0 +1,3 @@
+C:/Users/Josef/goproj/src/youth2k/FrequencyDomain/app/.externalNativeBuild/cmake/release/armeabi-v7a/CMakeFiles/SuperpoweredExample.dir
+C:/Users/Josef/goproj/src/youth2k/FrequencyDomain/app/.externalNativeBuild/cmake/release/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/Josef/goproj/src/youth2k/FrequencyDomain/app/.externalNativeBuild/cmake/release/armeabi-v7a/CMakeFiles/rebuild_cache.dir
