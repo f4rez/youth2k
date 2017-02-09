@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\Josef\\goproj\\src\\youth2k\\FrequencyDomain\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ldltr-v21\\values-ldltr-v21.xml",
+        "outputFile": "/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ldltr-v21/values-ldltr-v21.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 163
                 },
                 "from": {
-                    "file": "C:\\Users\\Josef\\.android\\build-cache\\85a88bb440bf9ab2cdc668a5a522c61584e65270\\output\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
+                    "file": "/home/farez/.android/build-cache/6e7304894a29e473b36778204e51d8c08e29e995/output/res/values-ldltr-v21/values-ldltr-v21.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

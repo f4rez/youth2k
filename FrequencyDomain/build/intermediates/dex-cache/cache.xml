@@ -2,220 +2,94 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="C:\Users\Josef\.android\build-cache\e69ba4576bee47978d6f8cf65e7849dd382ed18c\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
-        <dex dex="C:\Users\Josef\SuperpoweredSDK\SuperpoweredSDK\Android\FrequencyDomain\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_683fdc2f60a11deee24ffc1010abc3142f57fdc4\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Josef\.android\build-cache\3db64e2db45768a3196e1acf9ef9501a645af8e1\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
-        <dex dex="C:\Users\Josef\SuperpoweredSDK\SuperpoweredSDK\Android\FrequencyDomain\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_15555fd81b4446a25c2c345a9c95c60630d83934\classes.dex" />
-    </item>
-    <item
         is-multidex="false"
-        jar="C:\Users\Josef\.android\build-cache\3db64e2db45768a3196e1acf9ef9501a645af8e1\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
-        <dex dex="C:\Users\Josef\goproj\src\youth2k\FrequencyDomain\app\build\intermediates\pre-dexed\debug\classes_15555fd81b4446a25c2c345a9c95c60630d83934.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Josef\.android\build-cache\c614e53f371315e0111ba7f9ecdc65d36b67ea72\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
-        <dex dex="C:\Users\Josef\goproj\src\youth2k\FrequencyDomain\app\build\intermediates\pre-dexed\debug\classes_b83b79998c1a8c0ecf7a05709845e33360ec2546.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Josef\goproj\src\youth2k\FrequencyDomain\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="2ddb9052be88655edd69d1219bc380e41554f01c">
-        <dex dex="C:\Users\Josef\goproj\src\youth2k\FrequencyDomain\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_6c73ca56499b6e2b992f7b90a586b4c663c41f38\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Josef\SuperpoweredSDK\SuperpoweredSDK\Android\FrequencyDomain\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="53cb4a17c5d4c95f850e380ef5abdec49b36d8d5">
-        <dex dex="C:\Users\Josef\SuperpoweredSDK\SuperpoweredSDK\Android\FrequencyDomain\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_0b4a13211ad36c90425ee723bc6f03ca032800c8\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Josef\.android\build-cache\242d199303033e3d8a4aea0ad32e6d142519fa0d\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
-        <dex dex="C:\Users\Josef\goproj\src\youth2k\FrequencyDomain\app\build\intermediates\pre-dexed\debug\classes_fac56af926ec7496c8a58f7dbbfbe36f3a97f02d.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Josef\goproj\src\youth2k\FrequencyDomain\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="53cb4a17c5d4c95f850e380ef5abdec49b36d8d5">
-        <dex dex="C:\Users\Josef\goproj\src\youth2k\FrequencyDomain\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_33e04ae310f705827e04f826661044d8a9e9d9bc\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Josef\.android\build-cache\e69ba4576bee47978d6f8cf65e7849dd382ed18c\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
-        <dex dex="C:\Users\Josef\goproj\src\youth2k\FrequencyDomain\app\build\intermediates\pre-dexed\debug\classes_683fdc2f60a11deee24ffc1010abc3142f57fdc4.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Josef\SuperpoweredSDK\SuperpoweredSDK\Android\FrequencyDomain\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="6d8324b5d1475b5635bd2143e496ad3e2165eebf">
-        <dex dex="C:\Users\Josef\SuperpoweredSDK\SuperpoweredSDK\Android\FrequencyDomain\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_e99eb64f987e57a6a06907736a617175bf36fa53\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Josef\.android\build-cache\242d199303033e3d8a4aea0ad32e6d142519fa0d\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
-        <dex dex="C:\Users\Josef\SuperpoweredSDK\SuperpoweredSDK\Android\FrequencyDomain\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_fac56af926ec7496c8a58f7dbbfbe36f3a97f02d\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Josef\.android\build-cache\93e0bc846e57c269de0d08488b02eaf5e34447b5\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\Josef\goproj\src\youth2k\FrequencyDomain\app\build\intermediates\pre-dexed\debug\classes_3f1ffe834322f47b9fc1ecaa26fa04e881ce65d1.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Josef\.android\build-cache\92d9f0db21a3eb5f932bfa67abcf8e5cf2952ae9\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
-        <dex dex="C:\Users\Josef\SuperpoweredSDK\SuperpoweredSDK\Android\FrequencyDomain\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d1af3d2f5f36008cc976491866a9a429bee8d55b\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Josef\.android\build-cache\92d9f0db21a3eb5f932bfa67abcf8e5cf2952ae9\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
-        <dex dex="C:\Users\Josef\goproj\src\youth2k\FrequencyDomain\app\build\intermediates\pre-dexed\debug\classes_d1af3d2f5f36008cc976491866a9a429bee8d55b.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Josef\.android\build-cache\eca14d76129927d3625f462868724bfebcd75f15\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
-        <dex dex="C:\Users\Josef\SuperpoweredSDK\SuperpoweredSDK\Android\FrequencyDomain\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_76c3cb840ef76b9bd66f5cd9917b800729a455ba\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Josef\.android\build-cache\73439a92dc2bd50dbc6f52e10cc717d286c00b53\output\jars\classes.jar"
+        jar="/home/farez/.android/build-cache/afe9ac5ff4d837159b446242e4b13826d4604eeb/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
-        <dex dex="C:\Users\Josef\goproj\src\youth2k\FrequencyDomain\app\build\intermediates\pre-dexed\debug\classes_72df024b0701a72de0eff8c4fe9fb163b17eb449.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Josef\.android\build-cache\93e0bc846e57c269de0d08488b02eaf5e34447b5\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\Josef\SuperpoweredSDK\SuperpoweredSDK\Android\FrequencyDomain\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3f1ffe834322f47b9fc1ecaa26fa04e881ce65d1\classes.dex" />
+        <dex dex="/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/pre-dexed/debug/classes_e864f5ce653484fdce1ad14dfcddd966dad2f176.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\Josef\ANDROIDSTUDIO\adt-bundle-windows-x86_64-20140702\sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.1\support-annotations-25.1.1.jar"
+        jar="/home/farez/.android/build-cache/b68dd1ad273b6c27154168c3e006cfc497fdabdf/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
-        <dex dex="C:\Users\Josef\goproj\src\youth2k\FrequencyDomain\app\build\intermediates\pre-dexed\debug\support-annotations-25.1.1_d9ebf05046f7d1184270c60a051f2c11083434a8.jar" />
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/pre-dexed/debug/classes_90e29eee5365d1fbe8f4acb1d37effdfd060f339.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\Josef\.android\build-cache\85a88bb440bf9ab2cdc668a5a522c61584e65270\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
-        <dex dex="C:\Users\Josef\goproj\src\youth2k\FrequencyDomain\app\build\intermediates\pre-dexed\debug\classes_e3af96728cd17a814c7c68928ef12b0d0a3778ac.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Josef\.android\build-cache\eca14d76129927d3625f462868724bfebcd75f15\output\jars\classes.jar"
+        jar="/home/farez/.android/build-cache/c08d8b406cda90d1974c33f22bc05ee3186b921e/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
-        <dex dex="C:\Users\Josef\goproj\src\youth2k\FrequencyDomain\app\build\intermediates\pre-dexed\debug\classes_76c3cb840ef76b9bd66f5cd9917b800729a455ba.jar" />
+        <dex dex="/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/pre-dexed/debug/classes_21c16b89ca19ec693abc1403cec9fc6897769015.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\Josef\.android\build-cache\73439a92dc2bd50dbc6f52e10cc717d286c00b53\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
-        <dex dex="C:\Users\Josef\SuperpoweredSDK\SuperpoweredSDK\Android\FrequencyDomain\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_72df024b0701a72de0eff8c4fe9fb163b17eb449\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Josef\.android\build-cache\c614e53f371315e0111ba7f9ecdc65d36b67ea72\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
-        <dex dex="C:\Users\Josef\SuperpoweredSDK\SuperpoweredSDK\Android\FrequencyDomain\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b83b79998c1a8c0ecf7a05709845e33360ec2546\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Josef\ANDROIDSTUDIO\adt-bundle-windows-x86_64-20140702\sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.1\support-annotations-25.1.1.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/home/farez/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
-        <dex dex="C:\Users\Josef\SuperpoweredSDK\SuperpoweredSDK\Android\FrequencyDomain\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.1.1_d9ebf05046f7d1184270c60a051f2c11083434a8\classes.dex" />
+        <dex dex="/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/pre-dexed/debug/support-annotations-25.1.1_36eabf7aadc215d6c9a8d474086d2b86a73da658.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\Josef\.android\build-cache\85a88bb440bf9ab2cdc668a5a522c61584e65270\output\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/home/farez/.android/build-cache/cb548e103bffd019472dad73978e776058005a88/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/pre-dexed/debug/classes_8135a828147c636974ec4f594fa06fed12e684ce.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/farez/.android/build-cache/d905cf31f7c561f3e81a721bbc4ce9cd7e002c3b/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/pre-dexed/debug/classes_28ab94ed71bc0526c1c3fe6fda5499cc3198d94d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/farez/.android/build-cache/42dcbf405d8083938a60a33b7c95129a0b856fee/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/pre-dexed/debug/classes_02235a63b19bf2fa15da3079593bb52d02271abd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/farez/.android/build-cache/6e7304894a29e473b36778204e51d8c08e29e995/output/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
-        <dex dex="C:\Users\Josef\SuperpoweredSDK\SuperpoweredSDK\Android\FrequencyDomain\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e3af96728cd17a814c7c68928ef12b0d0a3778ac\classes.dex" />
+        <dex dex="/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/pre-dexed/debug/classes_2aa74cc62941b23e62b2a6179a1abbd2e20a0d9f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/farez/.android/build-cache/08c223e4061a623b4079a1a60c7873a1c7117ea1/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/pre-dexed/debug/classes_e525c0d6fdf1e6ad7732fa5303ac4bc0c05494be.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/farez/.android/build-cache/4e6d1e57cc739c715bc011f633fc1eef5f97ed3e/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/pre-dexed/debug/classes_2bba1140b4f60f64377a26df7ec5567905e78549.jar" />
     </item>
 
 </items>

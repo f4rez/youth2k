@@ -2,11 +2,11 @@
 {
 	"buildFiles" : 
 	[
-		"C:/Users/Josef/goproj/src/youth2k/FrequencyDomain/app/src/main/jni/CMakeLists.txt"
+		"/home/farez/go/src/youth2k/FrequencyDomain/app/src/main/jni/CMakeLists.txt"
 	],
 	"cleanCommands" : 
 	[
-		"C:\\Users\\Josef\\ANDROIDSTUDIO\\adt-bundle-windows-x86_64-20140702\\sdk\\cmake\\3.6.3155560\\bin\\cmake.exe --build C:\\Users\\Josef\\goproj\\src\\youth2k\\FrequencyDomain\\app\\.externalNativeBuild\\cmake\\release\\x86_64 --target clean"
+		"/home/farez/Android/Sdk/cmake/3.6.3155560/bin/cmake --build /home/farez/go/src/youth2k/FrequencyDomain/app/.externalNativeBuild/cmake/release/x86_64 --target clean"
 	],
 	"cppFileExtensions" : [ "cpp" ],
 	"libraries" : 
@@ -15,33 +15,33 @@
 		{
 			"abi" : "x86_64",
 			"artifactName" : "SuperpoweredExample",
-			"buildCommand" : "C:\\Users\\Josef\\ANDROIDSTUDIO\\adt-bundle-windows-x86_64-20140702\\sdk\\cmake\\3.6.3155560\\bin\\cmake.exe --build C:\\Users\\Josef\\goproj\\src\\youth2k\\FrequencyDomain\\app\\.externalNativeBuild\\cmake\\release\\x86_64 --target SuperpoweredExample",
+			"buildCommand" : "/home/farez/Android/Sdk/cmake/3.6.3155560/bin/cmake --build /home/farez/go/src/youth2k/FrequencyDomain/app/.externalNativeBuild/cmake/release/x86_64 --target SuperpoweredExample",
 			"buildType" : "release",
 			"files" : 
 			[
 				
 				{
-					"flags" : "  --target=x86_64-none-linux-android --gcc-toolchain=C:/Users/Josef/ANDROIDSTUDIO/adt-bundle-windows-x86_64-20140702/sdk/ndk-bundle/toolchains/x86_64-4.9/prebuilt/windows-x86_64 --sysroot=C:/Users/Josef/ANDROIDSTUDIO/adt-bundle-windows-x86_64-20140702/sdk/ndk-bundle/platforms/android-21/arch-x86_64  -DSuperpoweredExample_EXPORTS -IC:\\Users\\Josef\\goproj\\src\\youth2k\\FrequencyDomain\\app\\src\\main\\jni\\src\\main\\jni -IC:\\Users\\Josef\\SuperpoweredSDK\\SuperpoweredSDK\\Superpowered -isystem C:\\Users\\Josef\\ANDROIDSTUDIO\\adt-bundle-windows-x86_64-20140702\\sdk\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem C:\\Users\\Josef\\ANDROIDSTUDIO\\adt-bundle-windows-x86_64-20140702\\sdk\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86_64\\include -isystem C:\\Users\\Josef\\ANDROIDSTUDIO\\adt-bundle-windows-x86_64-20140702\\sdk\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -fsigned-char -IC:/Users/Josef/SuperpoweredSDK/SuperpoweredSDK/Superpowered -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
-					"src" : "C:/Users/Josef/goproj/src/youth2k/FrequencyDomain/app/src/main/jni/FrequencyDomain.cpp",
-					"workingDirectory" : "C:/Users/Josef/goproj/src/youth2k/FrequencyDomain/app/.externalNativeBuild/cmake/release/x86_64"
+					"flags" : "  --target=x86_64-none-linux-android --gcc-toolchain=/home/farez/Android/Sdk/ndk-bundle/toolchains/x86_64-4.9/prebuilt/linux-x86_64 --sysroot=/home/farez/Android/Sdk/ndk-bundle/platforms/android-21/arch-x86_64  -DSuperpoweredExample_EXPORTS -I/home/farez/go/src/youth2k/FrequencyDomain/app/src/main/jni/src/main/jni -I/home/farez/SuperpoweredSDK/Superpowered -isystem /home/farez/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /home/farez/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem /home/farez/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -fsigned-char -I/home/farez/SuperpoweredSDK/Superpowered -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/farez/go/src/youth2k/FrequencyDomain/app/src/main/jni/FrequencyDomain.cpp",
+					"workingDirectory" : "/home/farez/go/src/youth2k/FrequencyDomain/app/.externalNativeBuild/cmake/release/x86_64"
 				},
 				
 				{
-					"flags" : "  --target=x86_64-none-linux-android --gcc-toolchain=C:/Users/Josef/ANDROIDSTUDIO/adt-bundle-windows-x86_64-20140702/sdk/ndk-bundle/toolchains/x86_64-4.9/prebuilt/windows-x86_64 --sysroot=C:/Users/Josef/ANDROIDSTUDIO/adt-bundle-windows-x86_64-20140702/sdk/ndk-bundle/platforms/android-21/arch-x86_64  -DSuperpoweredExample_EXPORTS -IC:\\Users\\Josef\\goproj\\src\\youth2k\\FrequencyDomain\\app\\src\\main\\jni\\src\\main\\jni -IC:\\Users\\Josef\\SuperpoweredSDK\\SuperpoweredSDK\\Superpowered -isystem C:\\Users\\Josef\\ANDROIDSTUDIO\\adt-bundle-windows-x86_64-20140702\\sdk\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem C:\\Users\\Josef\\ANDROIDSTUDIO\\adt-bundle-windows-x86_64-20140702\\sdk\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86_64\\include -isystem C:\\Users\\Josef\\ANDROIDSTUDIO\\adt-bundle-windows-x86_64-20140702\\sdk\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -fsigned-char -IC:/Users/Josef/SuperpoweredSDK/SuperpoweredSDK/Superpowered -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
-					"src" : "C:/Users/Josef/SuperpoweredSDK/SuperpoweredSDK/Superpowered/AndroidIO/SuperpoweredAndroidAudioIO.cpp",
-					"workingDirectory" : "C:/Users/Josef/goproj/src/youth2k/FrequencyDomain/app/.externalNativeBuild/cmake/release/x86_64"
+					"flags" : "  --target=x86_64-none-linux-android --gcc-toolchain=/home/farez/Android/Sdk/ndk-bundle/toolchains/x86_64-4.9/prebuilt/linux-x86_64 --sysroot=/home/farez/Android/Sdk/ndk-bundle/platforms/android-21/arch-x86_64  -DSuperpoweredExample_EXPORTS -I/home/farez/go/src/youth2k/FrequencyDomain/app/src/main/jni/src/main/jni -I/home/farez/SuperpoweredSDK/Superpowered -isystem /home/farez/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /home/farez/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/include -isystem /home/farez/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -fsigned-char -I/home/farez/SuperpoweredSDK/Superpowered -O2 -DNDEBUG -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/farez/SuperpoweredSDK/Superpowered/AndroidIO/SuperpoweredAndroidAudioIO.cpp",
+					"workingDirectory" : "/home/farez/go/src/youth2k/FrequencyDomain/app/.externalNativeBuild/cmake/release/x86_64"
 				}
 			],
-			"output" : "C:/Users/Josef/goproj/src/youth2k/FrequencyDomain/app/build/intermediates/cmake/release/obj/x86_64/libSuperpoweredExample.so",
-			"toolchain" : "1395245007"
+			"output" : "/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/cmake/release/obj/x86_64/libSuperpoweredExample.so",
+			"toolchain" : "9095491639778437489"
 		}
 	},
 	"toolchains" : 
 	{
-		"1395245007" : 
+		"9095491639778437489" : 
 		{
-			"cCompilerExecutable" : "C:/Users/Josef/ANDROIDSTUDIO/adt-bundle-windows-x86_64-20140702/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
-			"cppCompilerExecutable" : "C:/Users/Josef/ANDROIDSTUDIO/adt-bundle-windows-x86_64-20140702/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+			"cCompilerExecutable" : "/home/farez/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang",
+			"cppCompilerExecutable" : "/home/farez/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++"
 		}
 	}
 }

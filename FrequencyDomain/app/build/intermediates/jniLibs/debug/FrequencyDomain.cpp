@@ -62,8 +62,11 @@ jclass findClass(const char* name) {
 static bool
 audioProcessing(void *__unused clientdata, short int *audioInputOutput, int numberOfSamples,
                 int __unused samplerate) {
-    float maxVal = 0.0;
-    int maxIndex = 0;
+
+    int vals[6];
+    float maxvals[6];
+    int starts[3] = {834,852, 870};
+    int diff = 18;
     SuperpoweredShortIntToFloat(audioInputOutput, inputBufferFloat,
                                 (unsigned int) numberOfSamples); // Converting the 16-bit integer samples to 32-bit floating point.
     frequencyDomain->addInput(inputBufferFloat,
@@ -74,17 +77,23 @@ audioProcessing(void *__unused clientdata, short int *audioInputOutput, int numb
                                                         phaseRight)) {
         // You can work with frequency domain data from this point.
 
-        /* // This is just a quick example: we remove the magnitude of the first 20 bins, meaning total bass cut between 0-430 Hz.
-         memset(magnitudeLeft, 0, 80);
-         memset(magnitudeRight, 0, 80);
-        */
 
 
-        for (int i = 835; i < 883; i++) {
-            if (magnitudeLeft[i] > maxVal) {
-                maxVal = magnitudeLeft[i];
-                maxIndex = i;
+        int start = 835;
+        float maxVal = 0.0;
+        int maxIndex = 0;
+        for (int k = 0; k < 6; k ++) {
+            for (int i = start + k*diff +2; i < start+ k*diff + diff; i++) {
+                if (magnitudeLeft[i] > maxVal) {
+                    maxVal = magnitudeLeft[i];
+                    maxIndex = i;
+                }
+
             }
+            vals[k] = maxIndex;//*samplerate/frequencyDomain->fftSize;
+            maxvals[k] = maxVal;
+            maxIndex = 0;
+            maxVal = 0.0;
         }
         memset(magnitudeLeft, 0, frequencyDomain->fftSize * sizeof(float));
         memset(magnitudeRight, 0, frequencyDomain->fftSize * sizeof(float));
@@ -96,9 +105,19 @@ audioProcessing(void *__unused clientdata, short int *audioInputOutput, int numb
 
         return true;
     }
-    jmethodID metodId = getEnv()->GetMethodID(mClass,"mColor","(I)V");
-    getEnv()->CallVoidMethod(gClassLoader, metodId,maxIndex);
-
+    auto count = 0;
+    for (int i = 0; i < 6; i+=2) {
+        auto first = (vals[i] - starts[count]) % 16;
+        if (first > 16) first = 16;
+        auto second =(vals[i+1] - starts[count] + 16 * 16) % 16;
+        if (second > 16) second = 16;
+        vals[count] = first*16 +second;
+        count++;
+    }
+    jmethodID metodId = getEnv()->GetMethodID(mClass,"mColor","(III)V");
+    if (metodId != NULL){
+        getEnv()->CallVoidMethod(gClassLoader, metodId, vals[0], vals[1], vals[2]);
+    }
     return false;
 }
 

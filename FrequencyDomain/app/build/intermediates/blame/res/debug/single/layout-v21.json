@@ -1,18 +1,18 @@
 [
     {
-        "merged": "C:\\Users\\Josef\\goproj\\src\\youth2k\\FrequencyDomain\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_custom_big.xml",
-        "source": "C:\\Users\\Josef\\.android\\build-cache\\85a88bb440bf9ab2cdc668a5a522c61584e65270\\output\\res\\layout-v21\\notification_template_custom_big.xml"
+        "merged": "/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/home/farez/.android/build-cache/6e7304894a29e473b36778204e51d8c08e29e995/output/res/layout-v21/notification_template_custom_big.xml"
     },
     {
-        "merged": "C:\\Users\\Josef\\goproj\\src\\youth2k\\FrequencyDomain\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_icon_group.xml",
-        "source": "C:\\Users\\Josef\\.android\\build-cache\\85a88bb440bf9ab2cdc668a5a522c61584e65270\\output\\res\\layout-v21\\notification_template_icon_group.xml"
+        "merged": "/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/home/farez/.android/build-cache/6e7304894a29e473b36778204e51d8c08e29e995/output/res/layout-v21/notification_action_tombstone.xml"
     },
     {
-        "merged": "C:\\Users\\Josef\\goproj\\src\\youth2k\\FrequencyDomain\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action.xml",
-        "source": "C:\\Users\\Josef\\.android\\build-cache\\85a88bb440bf9ab2cdc668a5a522c61584e65270\\output\\res\\layout-v21\\notification_action.xml"
+        "merged": "/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/res/merged/debug/layout-v21/notification_action.xml",
+        "source": "/home/farez/.android/build-cache/6e7304894a29e473b36778204e51d8c08e29e995/output/res/layout-v21/notification_action.xml"
     },
     {
-        "merged": "C:\\Users\\Josef\\goproj\\src\\youth2k\\FrequencyDomain\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action_tombstone.xml",
-        "source": "C:\\Users\\Josef\\.android\\build-cache\\85a88bb440bf9ab2cdc668a5a522c61584e65270\\output\\res\\layout-v21\\notification_action_tombstone.xml"
+        "merged": "/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/home/farez/.android/build-cache/6e7304894a29e473b36778204e51d8c08e29e995/output/res/layout-v21/notification_template_icon_group.xml"
     }
 ]

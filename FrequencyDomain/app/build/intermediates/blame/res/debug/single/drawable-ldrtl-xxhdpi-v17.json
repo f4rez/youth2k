@@ -1,14 +1,14 @@
 [
     {
-        "merged": "C:\\Users\\Josef\\goproj\\src\\youth2k\\FrequencyDomain\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxhdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png",
-        "source": "C:\\Users\\Josef\\.android\\build-cache\\85a88bb440bf9ab2cdc668a5a522c61584e65270\\output\\res\\drawable-ldrtl-xxhdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png"
+        "merged": "/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxhdpi-v17/abc_ic_menu_cut_mtrl_alpha.png",
+        "source": "/home/farez/.android/build-cache/6e7304894a29e473b36778204e51d8c08e29e995/output/res/drawable-ldrtl-xxhdpi-v17/abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
-        "merged": "C:\\Users\\Josef\\goproj\\src\\youth2k\\FrequencyDomain\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxhdpi-v17\\abc_spinner_mtrl_am_alpha.9.png",
-        "source": "C:\\Users\\Josef\\.android\\build-cache\\85a88bb440bf9ab2cdc668a5a522c61584e65270\\output\\res\\drawable-ldrtl-xxhdpi-v17\\abc_spinner_mtrl_am_alpha.9.png"
+        "merged": "/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxhdpi-v17/abc_spinner_mtrl_am_alpha.9.png",
+        "source": "/home/farez/.android/build-cache/6e7304894a29e473b36778204e51d8c08e29e995/output/res/drawable-ldrtl-xxhdpi-v17/abc_spinner_mtrl_am_alpha.9.png"
     },
     {
-        "merged": "C:\\Users\\Josef\\goproj\\src\\youth2k\\FrequencyDomain\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxhdpi-v17\\abc_ic_menu_copy_mtrl_am_alpha.png",
-        "source": "C:\\Users\\Josef\\.android\\build-cache\\85a88bb440bf9ab2cdc668a5a522c61584e65270\\output\\res\\drawable-ldrtl-xxhdpi-v17\\abc_ic_menu_copy_mtrl_am_alpha.png"
+        "merged": "/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxhdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png",
+        "source": "/home/farez/.android/build-cache/6e7304894a29e473b36778204e51d8c08e29e995/output/res/drawable-ldrtl-xxhdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png"
     }
 ]

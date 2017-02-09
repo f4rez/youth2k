@@ -1,10 +1,10 @@
 [
     {
-        "merged": "C:\\Users\\Josef\\goproj\\src\\youth2k\\FrequencyDomain\\app\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
-        "source": "C:\\Users\\Josef\\.android\\build-cache\\85a88bb440bf9ab2cdc668a5a522c61584e65270\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
+        "merged": "/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/home/farez/.android/build-cache/6e7304894a29e473b36778204e51d8c08e29e995/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
     },
     {
-        "merged": "C:\\Users\\Josef\\goproj\\src\\youth2k\\FrequencyDomain\\app\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
-        "source": "C:\\Users\\Josef\\.android\\build-cache\\85a88bb440bf9ab2cdc668a5a522c61584e65270\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
+        "merged": "/home/farez/go/src/youth2k/FrequencyDomain/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/home/farez/.android/build-cache/6e7304894a29e473b36778204e51d8c08e29e995/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
     }
 ]

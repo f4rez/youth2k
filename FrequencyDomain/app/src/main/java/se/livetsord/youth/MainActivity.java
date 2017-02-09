@@ -3,6 +3,7 @@ package se.livetsord.youth;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,12 +13,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.widget.LinearLayout;
 
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "youth2k";
+
     private static final int  MY_PERMISSIONS_REQUEST_RECORD_AUDIO = 1000;
+
+
+
 
 
     @Override
@@ -27,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         System.loadLibrary("SuperpoweredExample");
         requestAudioPermssion();
-
+        mColor(125,0,0);
     }
 
 
@@ -91,6 +97,54 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private int pR = 0;
+    private int pG = 0;
+    private int pB = 0;
+    private int ppR = 0;
+    private int ppG = 0;
+    private int ppB = 0;
+
+    public void mColor( int r,  int g, int b) {
+        Log.d(TAG, r+ " " + g + " " +b );
+        if (r > 255) r = 255;
+        if (g > 255) g = 255;
+        if (b > 255) b = 255;
+
+
+        if (r == pR && g == pG && b == pB && b == ppB && g == ppG && r == ppR) {
+
+            final int color = Color.argb(255, r, g, b);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    changeColor(color);
+                }
+            });
+        }
+        ppB = pB;
+        ppR = pR;
+        ppG = pG;
+        pR = r;
+        pB = b;
+        pG = g;
+
+
+    }
+
+
+
+
+
+
+
+    public void changeColor(int color) {
+        LinearLayout r = (LinearLayout) findViewById(R.id.bg);
+        assert r != null;
+        r.setBackgroundColor(color);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(color);
+        }
+    }
 
     private void startFreqDomain() {
 
@@ -106,11 +160,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    public void mColor(int h) {
-        Log.d("Youth", h + "");
-    }
-
     private native void FrequencyDomain(int samplerate, int buffersize);
+
+
 
 }
