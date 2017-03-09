@@ -1,6 +1,7 @@
 #include <jni.h>
 #include <stdlib.h>
 #include <android/log.h>
+#include <math.h>
 #include <SuperpoweredFrequencyDomain.h>
 #include <AndroidIO/SuperpoweredAndroidAudioIO.h>
 #include <SuperpoweredSimple.h>
@@ -62,10 +63,10 @@ jclass findClass(const char* name) {
 static bool
 audioProcessing(void *__unused clientdata, short int *audioInputOutput, int numberOfSamples,
                 int __unused samplerate) {
-
-    int vals[6];
-    float maxvals[6];
-    int starts[3] = {834,852, 870};
+    int numberOfChannels = 24;
+    int vals[numberOfChannels];
+    float treashold = 0.15f;
+    int rgb[3] = {0,0, 0};
     int diff = 18;
     SuperpoweredShortIntToFloat(audioInputOutput, inputBufferFloat,
                                 (unsigned int) numberOfSamples); // Converting the 16-bit integer samples to 32-bit floating point.
@@ -78,22 +79,20 @@ audioProcessing(void *__unused clientdata, short int *audioInputOutput, int numb
         // You can work with frequency domain data from this point.
 
 
-
-        int start = 835;
+        int start = 836;
         float maxVal = 0.0;
         int maxIndex = 0;
-        for (int k = 0; k < 6; k ++) {
-            for (int i = start + k*diff +2; i < start+ k*diff + diff; i++) {
-                if (magnitudeLeft[i] > maxVal) {
-                    maxVal = magnitudeLeft[i];
-                    maxIndex = i;
-                }
+        for (int k = start; k < start+numberOfChannels; k ++) {
+            if (magnitudeLeft[k] > treashold) {
+                vals[k - start] = 1;
+                //__android_log_print(ANDROID_LOG_DEBUG,"FREQ", "%d, %f", k*samplerate/frequencyDomain->fftSize, magnitudeLeft[k]  );
+
+            } else {
+                vals[k - start] = 0;
+                //__android_log_print(ANDROID_LOG_DEBUG,"FREQ", "%d, %f, %s", k*samplerate/frequencyDomain->fftSize,magnitudeLeft[k], "MISS"  );
 
             }
-            vals[k] = maxIndex;//*samplerate/frequencyDomain->fftSize;
-            maxvals[k] = maxVal;
-            maxIndex = 0;
-            maxVal = 0.0;
+
         }
         memset(magnitudeLeft, 0, frequencyDomain->fftSize * sizeof(float));
         memset(magnitudeRight, 0, frequencyDomain->fftSize * sizeof(float));
@@ -105,18 +104,14 @@ audioProcessing(void *__unused clientdata, short int *audioInputOutput, int numb
 
         return true;
     }
-    auto count = 0;
-    for (int i = 0; i < 6; i+=2) {
-        auto first = (vals[i] - starts[count]) % 16;
-        if (first > 16) first = 16;
-        auto second =(vals[i+1] - starts[count] + 16 * 16) % 16;
-        if (second > 16) second = 16;
-        vals[count] = first*16 +second;
-        count++;
+    for (int i = 0; i < 3; i++) {
+        for(int j = 0;j < 8; j++) {
+            rgb[i] +=vals[j + i*8] * pow(2,j);
+        }
     }
     jmethodID metodId = getEnv()->GetMethodID(mClass,"mColor","(III)V");
     if (metodId != NULL){
-        getEnv()->CallVoidMethod(gClassLoader, metodId, vals[0], vals[1], vals[2]);
+        getEnv()->CallVoidMethod(gClassLoader, metodId, rgb[0], rgb[1], rgb[2]);
     }
     return false;
 }
