@@ -14,7 +14,7 @@ func main() {
 	s := newStereoSine(18346, 18733, 18798, 19186, 19573, 19961, sampleRate)
 	defer s.Close()
 	chk(s.Start())
-	time.Sleep(500 * time.Second)
+	time.Sleep(5 * time.Second)
 	chk(s.Stop())
 }
 
@@ -31,7 +31,7 @@ type stereoSine struct {
 func newStereoSine(freqL, freqR, freqE, freqW, freqE2, freqW2, sampleRate float64) *stereoSine {
 	s := &stereoSine{nil, freqL / sampleRate, 0, freqR / sampleRate, 0, freqE / sampleRate, 0, freqW / sampleRate, 0, freqE2 / sampleRate, 0, freqW2 / sampleRate, 0}
 	var err error
-	s.Stream, err = portaudio.OpenDefaultStream(0, 6, sampleRate, 0, s.processAudio)
+	s.Stream, err = portaudio.OpenDefaultStream(0, 2, sampleRate, 0, s.processAudio)
 	chk(err)
 	return s
 }
@@ -42,14 +42,14 @@ func (g *stereoSine) processAudio(out [][]float32) {
 		_, g.phaseL = math.Modf(g.phaseL + g.stepL)
 		out[1][i] = float32(math.Sin(2 * math.Pi * g.phaseR))
 		_, g.phaseR = math.Modf(g.phaseR + g.stepR)
-		out[2][i] = float32(math.Sin(2*math.Pi*g.phaseE)) * 5
+		/*out[2][i] = float32(math.Sin(2*math.Pi*g.phaseE)) * 5
 		_, g.phaseE = math.Modf(g.phaseE + g.stepE)
 		out[3][i] = float32(math.Sin(2*math.Pi*g.phaseW)) * 5
 		_, g.phaseW = math.Modf(g.phaseW + g.stepW)
 		out[4][i] = float32(math.Sin(2 * math.Pi * g.phaseE2))
 		_, g.phaseE2 = math.Modf(g.phaseE2 + g.stepE2)
 		out[5][i] = float32(math.Sin(2 * math.Pi * g.phaseW2))
-		_, g.phaseW2 = math.Modf(g.phaseW2 + g.stepW2)
+		_, g.phaseW2 = math.Modf(g.phaseW2 + g.stepW2)*/
 	}
 }
 

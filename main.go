@@ -1,13 +1,15 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"math"
+	"net/http"
 	"os"
 	"strconv"
 	"time"
 
-	"youth2k/src/DMXReciever"
+	//"youth2k/src/DMXReciever"
 
 	"github.com/gordonklaus/portaudio"
 )
@@ -198,8 +200,13 @@ func curveFunc(x float64) float32 {
 	return 1 //float32(a * math.Exp(-math.Pow(x-b, 2)/2.0*math.Pow(c, 2)))
 }
 
+func countHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println(r)
+	fmt.Fprint(w, "kuuuul")
+}
+
 func main() {
-	dmxChan := make(chan DMXReciever.DmxSignal)
+	/*dmxChan := make(chan DMXReciever.DmxSignal)
 	go DMXReciever.ReadArtnet(dmxChan)
 	for i := 0; i < 6; i++ {
 		Arr[i] = make([]float32, plotSize)
@@ -208,7 +215,7 @@ func main() {
 	/*for _, i := range a {
 		log.Println(i)
 	}*/
-	gArr = a
+	/*gArr = a
 	portaudio.Initialize()
 	defer portaudio.Terminate()
 
@@ -230,5 +237,9 @@ func main() {
 		index++
 		log.Println(index, dmx)
 
-	}
+	}*/
+	log.Println("hej")
+	http.HandleFunc("/count/", countHandler)
+	log.Println("hoho")
+	http.ListenAndServe(":8080", nil)
 }
