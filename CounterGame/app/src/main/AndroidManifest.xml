@@ -33,11 +33,13 @@
             </intent-filter>
         </service>
 
-        <activity
-            android:name=".Reg"
+
+        <activity android:name=".Register"
             android:label="@string/title_activity_reg"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Register"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+
     </application>
 
 </manifest>

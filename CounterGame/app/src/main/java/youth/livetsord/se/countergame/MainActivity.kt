@@ -12,6 +12,18 @@ import com.github.kittinunf.fuel.Fuel
 import kotlinx.android.synthetic.main.activity_main.*
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.gson.GsonBuilder
+import kotlinx.android.synthetic.main.start_page.*
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import youth.livetsord.se.countergame.R.id.mWebView
+import youth.livetsord.se.countergame.R.id.mWebView
+
+
+
+
+
+
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, RestCallback {
@@ -24,8 +36,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RestCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        if (!getSharedPreferences(Constants.fcm.fcmSharedpref, Context.MODE_PRIVATE).getBoolean(Constants.fcm.isRegistered, false)) {
+        setContentView(R.layout.start_page)
+        val webSettings = mWebView.getSettings()
+        webSettings.setJavaScriptEnabled(true)
+        mWebView.loadUrl("http://youth.livetsord.se")
+
+        speakers.setOnClickListener {
+            mWebView.loadUrl("http://youth.livetsord.se#rev_slider_17_2_forcefullwidth")
+
+        }
+        mWebView.setWebViewClient(object : WebViewClient() {
+
+            override fun onPageFinished(view: WebView, url: String) {
+                Log.d("WEBVIEW", "DONE")
+            }
+        })
+
+        /*if (!getSharedPreferences(Constants.fcm.fcmSharedpref, Context.MODE_PRIVATE).getBoolean(Constants.fcm.isRegistered, false)) {
             val intent = Intent(this, Register::class.java)
             startActivity(intent)
         }
@@ -36,6 +63,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RestCallback {
         team1_downvote.setOnClickListener(this)
         team2_downvote.setOnClickListener(this)
         team3_downvote.setOnClickListener(this)
+
+*/
 
 
     }
