@@ -16,17 +16,12 @@ import kotlinx.android.synthetic.main.start_page.*
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import youth.livetsord.se.countergame.R.id.mWebView
-import youth.livetsord.se.countergame.R.id.mWebView
+import android.view.animation.AnimationUtils
+import android.net.ConnectivityManager
+import android.webkit.WebSettings.LOAD_CACHE_ELSE_NETWORK
 
 
-
-
-
-
-
-
-class MainActivity : AppCompatActivity(), View.OnClickListener, RestCallback {
+class MainActivity : AppCompatActivity() {
 
 
     var counter = 0
@@ -37,20 +32,52 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RestCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.start_page)
-        val webSettings = mWebView.getSettings()
-        webSettings.setJavaScriptEnabled(true)
+        val webSettings = mWebView.settings
+        webSettings.javaScriptEnabled = true
+        webSettings.setAppCachePath(applicationContext.cacheDir.absolutePath)
+        webSettings.allowFileAccess = true
+        webSettings.setAppCacheEnabled(true)
+        webSettings.cacheMode =WebSettings.LOAD_DEFAULT
+        // loading offline
+        if ( !isNetworkAvailable() ) mWebView.settings.cacheMode = LOAD_CACHE_ELSE_NETWORK
+
         mWebView.loadUrl("http://youth.livetsord.se")
 
         speakers.setOnClickListener {
-            mWebView.loadUrl("http://youth.livetsord.se#rev_slider_17_2_forcefullwidth")
+            if ( !isNetworkAvailable() ) mWebView.settings.cacheMode = LOAD_CACHE_ELSE_NETWORK
+
+            mWebView.loadUrl("http://youth.livetsord.se")
+            // loading offline
 
         }
+
+        schedule.setOnClickListener {
+            if ( !isNetworkAvailable() ) mWebView.settings.cacheMode = LOAD_CACHE_ELSE_NETWORK
+
+            mWebView.loadUrl("http://livetsord.se")
+            // loading offline
+        }
+
+        live.setOnClickListener {
+            if ( !isNetworkAvailable() ) mWebView.settings.cacheMode = LOAD_CACHE_ELSE_NETWORK
+            mWebView.loadUrl("http://google.se")
+            // loading offline
+        }
+
         mWebView.setWebViewClient(object : WebViewClient() {
 
             override fun onPageFinished(view: WebView, url: String) {
-                Log.d("WEBVIEW", "DONE")
+                val animFadeOut = AnimationUtils.loadAnimation(applicationContext, android.R.anim.fade_out)
+                val animFadeIn = AnimationUtils.loadAnimation(applicationContext, android.R.anim.fade_in)
+                splashscreen.animation = animFadeOut
+                container.animation = animFadeIn
+                container.visibility = View.VISIBLE
+                splashscreen.visibility = View.GONE
             }
         })
+
+
+
 
         /*if (!getSharedPreferences(Constants.fcm.fcmSharedpref, Context.MODE_PRIVATE).getBoolean(Constants.fcm.isRegistered, false)) {
             val intent = Intent(this, Register::class.java)
@@ -69,7 +96,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RestCallback {
 
     }
 
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
+    }
 
+/*
     override fun onClick(p0: View?) {
         val l = p0!!.tag.toString().split(" ")
         var team = ""
@@ -116,7 +149,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RestCallback {
 
     }
 
-
+*/
 
 }
 

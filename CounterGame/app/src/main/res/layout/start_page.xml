@@ -4,42 +4,68 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/splashscreen"
+        android:visibility="visible"
+        android:scaleType="centerCrop"
+        android:id="@+id/splashscreen"/>
 
-    <WebView
-        android:id="@+id/mWebView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:id="@+id/container">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/bottombar_size"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary">
+        <WebView
+            android:id="@+id/mWebView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-        <ImageView
-            android:id="@+id/speakers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@mipmap/ic_launcher" />
-
-        <ImageView
-            android:id="@+id/schedule"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@mipmap/ic_launcher" />
-
-        <ImageView
-            android:id="@+id/live"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@mipmap/ic_launcher" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@drawable/black_transp_gradient"
+            android:layout_above="@+id/bottombar"/>
 
 
-    </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_size"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimary"
+            android:id="@+id/bottombar">
+
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:id="@+id/speakers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/speakers" />
+
+            <ImageView
+                android:layout_marginTop="10dp"
+
+                android:id="@+id/schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/schedule" />
+
+            <ImageView
+                android:layout_marginTop="10dp"
+
+                android:id="@+id/live"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/downloads" />
+
+
+        </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

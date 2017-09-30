@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "26.0.0"
     defaultConfig {
         applicationId "youth.livetsord.se.countergame"
         minSdkVersion 16
