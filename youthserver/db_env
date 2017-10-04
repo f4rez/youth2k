@@ -1,0 +1,5 @@
+export APP_DB_USERNAME="farez"
+export APP_DB_PASSWORD="bamses9142"
+export APP_DB_NAME="youth2k"
+
+export APP_PW_FUNCTIONS="pass12youth2k17"
