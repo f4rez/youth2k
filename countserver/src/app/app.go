@@ -40,6 +40,8 @@ func (a *App) createUser(w http.ResponseWriter, r *http.Request) {
 	if err := json.NewDecoder(r.Body).Decode(&usr); err != nil {
 		log.Println(err)
 	}
+	log.Println("decoder")
+
 	err := usr.CreateUser(a.DB)
 	if err != nil {
 		respondWithError(w, http.StatusBadRequest, err.Error())
@@ -157,7 +159,7 @@ func (a *App) InitializeRouters() {
 }
 
 func (a *App) Initialize(user, password, dbname string) {
-	var db, err = sql.Open("postgres", "user="+user+" dbname="+dbname+" password="+password+" sslmode=disable")
+	var db, err = sql.Open("postgres", "host=youth2k.c7ygvmc8gmni.eu-central-1.rds.amazonaws.com"+" user="+user+" dbname="+dbname+" password="+password+" sslmode=disable")
 	if err != nil {
 		log.Fatal(err)
 	}
