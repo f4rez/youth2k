@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         application.registerForRemoteNotifications()
-        
+        print(Messaging.messaging().fcmToken)
         // [END register_for_notifications]
         return true
     }
@@ -99,7 +99,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("APNs token retrieved: \(deviceToken)")
         
         // With swizzling disabled you must set the APNs token here.
-        // Messaging.messaging().apnsToken = deviceToken
+        Messaging.messaging().apnsToken = deviceToken
+    }
+    
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
     }
 }
 
@@ -124,7 +128,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         print(userInfo)
         
         // Change this to your preferred presentation option
-        completionHandler([])
+        completionHandler(.alert)
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -142,5 +146,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         completionHandler()
     }
 }
-// [END ios_10_message_handling]
+
+
+
 

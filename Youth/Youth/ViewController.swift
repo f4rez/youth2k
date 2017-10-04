@@ -8,11 +8,22 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, UIWebViewDelegate {
+    @IBOutlet var schedule: UIImageView!
+    @IBOutlet var downloads: UIImageView!
+    @IBOutlet var speakers: UIImageView!
+    
+    @IBOutlet var splash: UIImageView!
+    @IBOutlet var mWebView: UIWebView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        mWebView.delegate = self
+        mWebView.scrollView.bounces = false
+        mWebView.loadRequest(URLRequest(url: URL(string: "http://youth.livetsord.se")!))
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +31,14 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        print("Finished")
+        UIView.animate(withDuration: 0.9, animations: {
+            
+            self.splash.alpha = 0.0
+        })
+    }
+    
 
 }
 

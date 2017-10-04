@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>75917400886-u6hd625h2b6h1oj5decmitec3l654qsu.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.75917400886-u6hd625h2b6h1oj5decmitec3l654qsu</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAaL3cwjrx6_EOA6y9Zpm10v-yRvfuqXfs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>75917400886</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>se.livetsord.youthconf</string>
+	<key>PROJECT_ID</key>
+	<string>youthconf-lo</string>
+	<key>STORAGE_BUCKET</key>
+	<string>youthconf-lo.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<true/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:75917400886:ios:c4f82ff0d56417a4</string>
+	<key>DATABASE_URL</key>
+	<string>https://youthconf-lo.firebaseio.com</string>
+</dict>
+</plist>
