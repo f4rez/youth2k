@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let gcmMessageIDKey = "gcm.message_id"
     
+    let hasSentKey = "hasSent"
+    
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -49,7 +51,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         application.registerForRemoteNotifications()
-        print(Messaging.messaging().fcmToken)
+        print(Messaging.messaging().fcmToken ?? "NoKey")
+        if !hasSentFCMToServer() {
+            sendFCMToServer()
+        }
         // [END register_for_notifications]
         return true
     }
@@ -104,7 +109,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
+        sendFCMToServer()
     }
+    
+    
+    func hasSentFCMToServer() -> Bool {
+        let preferences = UserDefaults.standard
+        return preferences.bool(forKey: hasSentKey)
+       
+    }
+    
+    func sendFCMToServer() {
+        print("Sending fcm to Server")
+        if let token = Messaging.messaging().fcmToken {
+            var request = URLRequest(url: URL(string: "http://18.194.136.218:8080/user/" + token)!)
+            request.httpMethod = "POST"
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                    print("error=\(String(describing: error))")
+                    return
+                }
+                
+                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                    print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                    print("response = \(String(describing: response))")
+                }
+                
+                let responseString = String(data: data, encoding: .utf8)
+                if responseString == "200OK" {
+                    let preferences = UserDefaults.standard
+                    let sent = true
+                    preferences.set(sent, forKey: self.hasSentKey)
+                    preferences.synchronize()
+                }
+                print("responseString = \(String(describing: responseString))")
+            }
+            task.resume()
+        }
+       
+    }
+    
 }
 
 // [START ios_10_message_handling]
@@ -142,6 +186,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         
         // Print full message.
         print(userInfo)
+        if let mLink = userInfo["link"] {
+            (window?.rootViewController as? ViewController)?.openLinkFromNotif(link: mLink as! String)
+
+        }
+        
         
         completionHandler()
     }

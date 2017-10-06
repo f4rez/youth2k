@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"youth2k/countserver/src/app"
+	"youth2k/youthserver/src/app"
 )
 
 func main() {

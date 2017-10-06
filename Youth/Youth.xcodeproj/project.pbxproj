@@ -16,6 +16,10 @@
 		D2105A4E1F10D674004BC95D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2105A4C1F10D674004BC95D /* LaunchScreen.storyboard */; };
 		D2105A591F10D674004BC95D /* YouthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2105A581F10D674004BC95D /* YouthTests.swift */; };
 		D2105A641F10D674004BC95D /* YouthUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2105A631F10D674004BC95D /* YouthUITests.swift */; };
+		D26863EB1F862D7B00DD8EAF /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = D26863E71F862D7A00DD8EAF /* Montserrat-Black.otf */; };
+		D26863EC1F862D7B00DD8EAF /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D26863E81F862D7B00DD8EAF /* Montserrat-Bold.otf */; };
+		D26863ED1F862D7B00DD8EAF /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D26863E91F862D7B00DD8EAF /* Montserrat-Regular.otf */; };
+		D26863EE1F862D7B00DD8EAF /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D26863EA1F862D7B00DD8EAF /* Montserrat-Light.otf */; };
 		D2AE18761F839DC100CF6331 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2AE18751F839DC100CF6331 /* GoogleService-Info.plist */; };
 		F6A5D6616CED5DB1793AC4E5 /* Pods_YouthUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E20A3C8DCF49BD0DAF380586 /* Pods_YouthUITests.framework */; };
 /* End PBXBuildFile section */
@@ -57,6 +61,10 @@
 		D2105A5F1F10D674004BC95D /* YouthUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YouthUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2105A631F10D674004BC95D /* YouthUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouthUITests.swift; sourceTree = "<group>"; };
 		D2105A651F10D674004BC95D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D26863E71F862D7A00DD8EAF /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
+		D26863E81F862D7B00DD8EAF /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
+		D26863E91F862D7B00DD8EAF /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.otf"; sourceTree = "<group>"; };
+		D26863EA1F862D7B00DD8EAF /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.otf"; sourceTree = "<group>"; };
 		D2AE18711F8397C600CF6331 /* Youth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Youth.entitlements; sourceTree = "<group>"; };
 		D2AE18751F839DC100CF6331 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E20A3C8DCF49BD0DAF380586 /* Pods_YouthUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YouthUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +148,10 @@
 		D2105A421F10D674004BC95D /* Youth */ = {
 			isa = PBXGroup;
 			children = (
+				D26863E71F862D7A00DD8EAF /* Montserrat-Black.otf */,
+				D26863E81F862D7B00DD8EAF /* Montserrat-Bold.otf */,
+				D26863EA1F862D7B00DD8EAF /* Montserrat-Light.otf */,
+				D26863E91F862D7B00DD8EAF /* Montserrat-Regular.otf */,
 				D2AE18751F839DC100CF6331 /* GoogleService-Info.plist */,
 				D2AE18711F8397C600CF6331 /* Youth.entitlements */,
 				D2105A431F10D674004BC95D /* AppDelegate.swift */,
@@ -297,9 +309,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2105A4E1F10D674004BC95D /* LaunchScreen.storyboard in Resources */,
+				D26863EB1F862D7B00DD8EAF /* Montserrat-Black.otf in Resources */,
 				D2AE18761F839DC100CF6331 /* GoogleService-Info.plist in Resources */,
 				D2105A4B1F10D674004BC95D /* Assets.xcassets in Resources */,
 				D2105A491F10D674004BC95D /* Main.storyboard in Resources */,
+				D26863ED1F862D7B00DD8EAF /* Montserrat-Regular.otf in Resources */,
+				D26863EC1F862D7B00DD8EAF /* Montserrat-Bold.otf in Resources */,
+				D26863EE1F862D7B00DD8EAF /* Montserrat-Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,7 +564,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -596,7 +612,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -613,11 +629,12 @@
 				CODE_SIGN_ENTITLEMENTS = Youth/Youth.entitlements;
 				DEVELOPMENT_TEAM = BFQ3TVLCP8;
 				INFOPLIST_FILE = Youth/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = se.livetsord.youthconf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -629,11 +646,12 @@
 				CODE_SIGN_ENTITLEMENTS = Youth/Youth.entitlements;
 				DEVELOPMENT_TEAM = BFQ3TVLCP8;
 				INFOPLIST_FILE = Youth/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = se.livetsord.youthconf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
