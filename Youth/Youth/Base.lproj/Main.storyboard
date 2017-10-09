@@ -21,10 +21,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0PF-Ds-QaX">
-                                <rect key="frame" x="0.0" y="20" width="375" height="563"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="45v-UA-kMV">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0PF-Ds-QaX">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m2r-PO-CYz">
+                                <rect key="frame" x="0.0" y="574" width="375" height="93"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="93" id="ajO-XQ-BhY"/>
+                                </constraints>
+                            </imageView>
                             <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="GUc-aH-Sl0">
                                 <rect key="frame" x="0.0" y="20" width="375" height="2"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -47,40 +58,49 @@
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fade" translatesAutoresizingMaskIntoConstraints="NO" id="BQG-GA-gfm">
-                                <rect key="frame" x="-125" y="549" width="500" height="34"/>
+                                <rect key="frame" x="0.0" y="524" width="377" height="50"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="odT-ki-1R5">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="0yd-AS-kU3">
-                                <rect key="frame" x="177" y="627" width="20" height="20"/>
+                                <rect key="frame" x="179" y="627" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="0PF-Ds-QaX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="3v4-X7-OyA"/>
-                            <constraint firstItem="0PF-Ds-QaX" firstAttribute="trailing" secondItem="odT-ki-1R5" secondAttribute="trailing" id="453-Z6-MXK"/>
-                            <constraint firstItem="odT-ki-1R5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4le-gM-dd1"/>
-                            <constraint firstItem="0yd-AS-kU3" firstAttribute="top" secondItem="0PF-Ds-QaX" secondAttribute="bottom" constant="44" id="7WX-yB-yNb"/>
                             <constraint firstItem="GUc-aH-Sl0" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="7ZJ-5N-Imp"/>
-                            <constraint firstItem="0yd-AS-kU3" firstAttribute="centerX" secondItem="0PF-Ds-QaX" secondAttribute="centerX" id="Aio-BH-LHu"/>
-                            <constraint firstAttribute="trailing" secondItem="BQG-GA-gfm" secondAttribute="trailing" id="DDh-hi-DXU"/>
-                            <constraint firstItem="BQG-GA-gfm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="529" id="GFm-Mk-jHQ"/>
-                            <constraint firstAttribute="trailing" secondItem="odT-ki-1R5" secondAttribute="trailing" id="JxQ-v9-ZJ2"/>
+                            <constraint firstItem="m2r-PO-CYz" firstAttribute="top" secondItem="BQG-GA-gfm" secondAttribute="bottom" id="9sa-lg-iym"/>
+                            <constraint firstItem="odT-ki-1R5" firstAttribute="trailing" secondItem="GUc-aH-Sl0" secondAttribute="trailing" id="A3m-Lh-xuW"/>
+                            <constraint firstAttribute="trailing" secondItem="BQG-GA-gfm" secondAttribute="trailing" constant="-2" id="DDh-hi-DXU"/>
+                            <constraint firstItem="m2r-PO-CYz" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="DcF-7X-MOr"/>
+                            <constraint firstItem="0yd-AS-kU3" firstAttribute="top" secondItem="odT-ki-1R5" secondAttribute="bottom" constant="-40" id="IJK-Rn-6qY"/>
                             <constraint firstAttribute="trailing" secondItem="GUc-aH-Sl0" secondAttribute="trailing" id="Kua-ya-UIP"/>
-                            <constraint firstItem="odT-ki-1R5" firstAttribute="top" secondItem="0PF-Ds-QaX" secondAttribute="bottom" constant="-583" id="O84-4P-Xt5"/>
+                            <constraint firstItem="odT-ki-1R5" firstAttribute="trailing" secondItem="m2r-PO-CYz" secondAttribute="trailing" id="NX3-uR-EGq"/>
+                            <constraint firstItem="45v-UA-kMV" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="Qnr-ax-d6X"/>
+                            <constraint firstItem="45v-UA-kMV" firstAttribute="top" secondItem="0PF-Ds-QaX" secondAttribute="top" id="R4r-AK-hGI"/>
+                            <constraint firstItem="odT-ki-1R5" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Rvp-xD-AqC"/>
+                            <constraint firstItem="odT-ki-1R5" firstAttribute="leading" secondItem="BQG-GA-gfm" secondAttribute="leading" id="U1J-BE-HhM"/>
                             <constraint firstItem="GUc-aH-Sl0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="XRY-Ca-Qmn"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="odT-ki-1R5" secondAttribute="bottom" id="aW6-c4-TJ7"/>
-                            <constraint firstItem="BQG-GA-gfm" firstAttribute="bottom" secondItem="0PF-Ds-QaX" secondAttribute="bottom" id="clg-Dm-u2P"/>
-                            <constraint firstItem="0PF-Ds-QaX" firstAttribute="leading" secondItem="odT-ki-1R5" secondAttribute="leading" id="emQ-Du-sLF"/>
-                            <constraint firstItem="odT-ki-1R5" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="rhS-Nu-AHc"/>
-                            <constraint firstItem="odT-ki-1R5" firstAttribute="top" secondItem="GUc-aH-Sl0" secondAttribute="bottom" constant="-22" id="rlh-Mz-H8b"/>
+                            <constraint firstItem="45v-UA-kMV" firstAttribute="leading" secondItem="GUc-aH-Sl0" secondAttribute="leading" id="YwP-RM-1JT"/>
+                            <constraint firstItem="0yd-AS-kU3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="1" id="ZdM-wN-cX3"/>
+                            <constraint firstItem="m2r-PO-CYz" firstAttribute="leading" secondItem="GUc-aH-Sl0" secondAttribute="leading" id="cYd-JB-XYQ"/>
+                            <constraint firstItem="m2r-PO-CYz" firstAttribute="trailing" secondItem="0PF-Ds-QaX" secondAttribute="trailing" id="fpe-ci-hrO"/>
+                            <constraint firstItem="m2r-PO-CYz" firstAttribute="leading" secondItem="BQG-GA-gfm" secondAttribute="leading" id="geP-qs-iWs"/>
+                            <constraint firstItem="odT-ki-1R5" firstAttribute="leading" secondItem="0PF-Ds-QaX" secondAttribute="leading" id="hqg-sP-ool"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="0PF-Ds-QaX" secondAttribute="bottom" id="oIi-dR-IyN"/>
+                            <constraint firstItem="45v-UA-kMV" firstAttribute="trailing" secondItem="GUc-aH-Sl0" secondAttribute="trailing" id="oxS-vQ-ESd"/>
+                            <constraint firstItem="odT-ki-1R5" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="qcF-9r-763"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottombar" destination="m2r-PO-CYz" id="xKx-u0-Th5"/>
                         <outlet property="downloads" destination="eU4-3b-hki" id="07z-RY-a9a"/>
+                        <outlet property="fade" destination="BQG-GA-gfm" id="MUX-iU-MO7"/>
                         <outlet property="home" destination="OBM-Jl-v46" id="D4X-jM-1Fm"/>
                         <outlet property="mWebView" destination="0PF-Ds-QaX" id="Mca-ra-pxV"/>
+                        <outlet property="mWebView2" destination="45v-UA-kMV" id="Zsb-YH-Llr"/>
                         <outlet property="progress" destination="GUc-aH-Sl0" id="eaS-Cj-hlQ"/>
                         <outlet property="schedule" destination="B7o-by-NGH" id="D4v-kk-aIp"/>
                         <outlet property="speakers" destination="zxL-ru-0If" id="aea-46-bn4"/>
@@ -94,15 +114,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="downloads" width="512" height="512"/>
-        <image name="downloads_w" width="512" height="512"/>
+        <image name="downloads" width="150" height="150"/>
+        <image name="downloads_w" width="150" height="150"/>
         <image name="fade" width="500" height="50"/>
-        <image name="home" width="512" height="512"/>
-        <image name="home_w" width="512" height="512"/>
-        <image name="schedule" width="512" height="512"/>
-        <image name="schedule_w" width="512" height="512"/>
-        <image name="speakers" width="512" height="512"/>
-        <image name="speakers_w" width="512" height="512"/>
+        <image name="home" width="150" height="150"/>
+        <image name="home_w" width="150" height="150"/>
+        <image name="schedule" width="150" height="150"/>
+        <image name="schedule_w" width="150" height="150"/>
+        <image name="speakers" width="150" height="150"/>
+        <image name="speakers_w" width="150" height="150"/>
         <image name="splash" width="1080" height="1920"/>
     </resources>
 </document>

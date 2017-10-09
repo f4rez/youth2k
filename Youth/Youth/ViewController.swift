@@ -14,6 +14,7 @@ class ViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet var splash: UIImageView!
     @IBOutlet var mWebView: UIWebView!
+    @IBOutlet var mWebView2: UIWebView!
     
     @IBOutlet var home: UIImageView!
     @IBOutlet var speakers: UIImageView!
@@ -21,12 +22,18 @@ class ViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet var schedule: UIImageView!
     @IBOutlet var spinner: UIActivityIndicatorView!
     @IBOutlet var progress: UIProgressView!
+    @IBOutlet var bottombar: UIImageView!
+    @IBOutlet var fade: UIImageView!
+    
+    var counterWebview = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         mWebView.delegate = self
         mWebView.scrollView.bounces = false
+        mWebView2.delegate = self
+        mWebView2.scrollView.bounces = false
         loadRequestWebview(mWebView: mWebView, mUrl:"http://youthapp.livetsord.se/hem" )
         schedule.isUserInteractionEnabled = true
         downloads.isUserInteractionEnabled = true
@@ -62,6 +69,40 @@ class ViewController: UIViewController, UIWebViewDelegate {
             self.spinner.alpha = 0.0
             self.splash.alpha = 0.0
         })
+        
+        if counterWebview % 2 == 0 {
+            if let remove = webView.request?.url?.absoluteString.hasSuffix("/hem/") {
+                UIView.animate(withDuration: 0.9, animations: {
+                    self.mWebView2.alpha = 0
+                    self.mWebView.alpha = 1
+                    if remove {
+                        self.fade.alpha = 0
+                        self.bottombar.alpha = 0
+                    } else {
+                        self.fade.alpha = 1.0
+                        self.bottombar.alpha = 1.0
+                    }
+                })
+            }
+            
+        } else {
+            if let remove = webView.request?.url?.absoluteString.hasSuffix("/hem/") {
+                
+                UIView.animate(withDuration: 0.9, animations: {
+                    self.mWebView.alpha = 0
+                    self.mWebView2.alpha = 1
+                    if remove {
+                        self.fade.alpha = 0
+                        self.bottombar.alpha = 0
+                    } else {
+                        self.fade.alpha = 1.0
+                        self.bottombar.alpha = 1.0
+                    }
+                })
+            }
+            
+        }
+        counterWebview += 1
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
@@ -86,7 +127,11 @@ class ViewController: UIViewController, UIWebViewDelegate {
     }
     
     func loadRequestWebview(mWebView: UIWebView, mUrl: String) {
-        mWebView.loadRequest(URLRequest(url: URL(string: mUrl)!,cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 20.0))
+        if counterWebview % 2 == 0 {
+            mWebView.loadRequest(URLRequest(url: URL(string: mUrl)!,cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 20.0))
+        } else {
+            mWebView2.loadRequest(URLRequest(url: URL(string: mUrl)!,cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 20.0))
+        }
         
     }
     
@@ -101,38 +146,46 @@ class ViewController: UIViewController, UIWebViewDelegate {
     func homeTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         let tappedImage = tapGestureRecognizer.view as! UIImageView
-        unHighlightAll()
-        startProgressBar()
-        tappedImage.isHighlighted = true
-        loadRequestWebview(mWebView: self.mWebView, mUrl:"http://youthapp.livetsord.se/hem")
+        if !tappedImage.isHighlighted {
+            unHighlightAll()
+            startProgressBar()
+            tappedImage.isHighlighted = true
+            loadRequestWebview(mWebView: self.mWebView, mUrl:"http://youthapp.livetsord.se/hem")
+        }
     }
     
     
     func scheduleTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         let tappedImage = tapGestureRecognizer.view as! UIImageView
-        unHighlightAll()
-        startProgressBar()
-        tappedImage.isHighlighted = true
-        loadRequestWebview(mWebView: self.mWebView, mUrl:"http://youthapp.livetsord.se/schema")
+        if !tappedImage.isHighlighted {
+            unHighlightAll()
+            startProgressBar()
+            tappedImage.isHighlighted = true
+            loadRequestWebview(mWebView: self.mWebView, mUrl:"http://youthapp.livetsord.se/schema")
+        }
     }
     
     func sPTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         let tappedImage = tapGestureRecognizer.view as! UIImageView
-        unHighlightAll()
-        startProgressBar()
-        tappedImage.isHighlighted = true
-        loadRequestWebview(mWebView: self.mWebView, mUrl:"http://youthapp.livetsord.se/talare")
+        if !tappedImage.isHighlighted {
+            unHighlightAll()
+            startProgressBar()
+            tappedImage.isHighlighted = true
+            loadRequestWebview(mWebView: self.mWebView, mUrl:"http://youthapp.livetsord.se/talare")
+        }
     }
-    
     func dOTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         let tappedImage = tapGestureRecognizer.view as! UIImageView
-        unHighlightAll()
-        startProgressBar()
-        tappedImage.isHighlighted = true
-        loadRequestWebview(mWebView: self.mWebView, mUrl:"http://youthapp.livetsord.se/downloads")
+        if !tappedImage.isHighlighted {
+            unHighlightAll()
+            startProgressBar()
+            tappedImage.isHighlighted = true
+            loadRequestWebview(mWebView: self.mWebView, mUrl:"http://youthapp.livetsord.se/downloads")
+        }
+        
     }
     
     func openLinkFromNotif(link: String) {
@@ -158,6 +211,19 @@ class ViewController: UIViewController, UIWebViewDelegate {
         self.progress.setProgress(0, animated: false)
     }
     
+    func removeBottomBar() {
+        UIView.animate(withDuration: 1.9, animations: {
+            self.fade.alpha = 0.0
+            self.bottombar.alpha = 0.0
+        })
+    }
+    
+    func reviewBottomBar() {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.fade.alpha = 1.0
+            self.bottombar.alpha = 1.0
+        })
+    }
 }
 
 

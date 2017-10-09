@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerForRemoteNotifications()
         print(Messaging.messaging().fcmToken ?? "NoKey")
         if !hasSentFCMToServer() {
-            sendFCMToServer()
+            Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(sendFCMToServer), userInfo: nil, repeats: false)
         }
         // [END register_for_notifications]
         return true
@@ -119,10 +119,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        
     }
     
-    func sendFCMToServer() {
-        print("Sending fcm to Server")
+    @objc func sendFCMToServer() {
         if let token = Messaging.messaging().fcmToken {
-            var request = URLRequest(url: URL(string: "http://18.194.136.218:8080/user/" + token)!)
+            print("Sending fcm to Server", token)
+            var request = URLRequest(url: URL(string: "http://Youthappredirect.livetsord.se:8080/user/" + token)!)
             request.httpMethod = "POST"
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 guard let data = data, error == nil else {                                                 // check for fundamental networking error
@@ -145,6 +145,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("responseString = \(String(describing: responseString))")
             }
             task.resume()
+        } else {
+            print("no token to send")
         }
        
     }
@@ -188,7 +190,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         print(userInfo)
         if let mLink = userInfo["link"] {
             (window?.rootViewController as? ViewController)?.openLinkFromNotif(link: mLink as! String)
-
+        } else {
+            (window?.rootViewController as? ViewController)?.openLinkFromNotif(link: "http://youthapp.livetsord.se/hem")
         }
         
         
