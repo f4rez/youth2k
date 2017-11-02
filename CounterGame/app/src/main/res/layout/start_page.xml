@@ -2,70 +2,138 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:src="@drawable/splashscreen"
-        android:visibility="visible"
-        android:scaleType="centerCrop"
-        android:id="@+id/splashscreen"/>
 
     <RelativeLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
-        android:id="@+id/container">
+        android:visibility="invisible">
 
-        <WebView
-            android:id="@+id/mWebView"
+
+        <android.support.v4.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:id="@+id/swipeRefresh1">
+
+            <WebView
+                android:id="@+id/mWebView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/swipeRefresh2">
+
+            <WebView
+                android:id="@+id/mWebView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:background="@color/colorPrimary">
+
+            </WebView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
 
         <LinearLayout
+            android:id="@+id/fade"
             android:layout_width="match_parent"
             android:layout_height="20dp"
+            android:layout_above="@+id/bottombar"
             android:background="@drawable/black_transp_gradient"
-            android:layout_above="@+id/bottombar"/>
-
-
+            android:orientation="horizontal"
+            android:visibility="visible" />
 
         <LinearLayout
+            android:id="@+id/bottombarColor"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottombar_size"
             android:layout_alignParentBottom="true"
             android:background="@color/colorPrimary"
-            android:id="@+id/bottombar">
+            android:orientation="horizontal" />
+
+        <LinearLayout
+            android:id="@+id/bottombar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_size"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="6dp">
 
             <ImageView
-                android:layout_marginTop="10dp"
-                android:id="@+id/speakers"
+                android:id="@+id/home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:src="@drawable/speakers" />
+                android:src="@drawable/hem_vit"
+                android:contentDescription="TODO" />
 
             <ImageView
-                android:layout_marginTop="10dp"
-
                 android:id="@+id/schedule"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:src="@drawable/schedule" />
+                android:src="@drawable/schema"
+                android:contentDescription="TODO" />
 
             <ImageView
-                android:layout_marginTop="10dp"
+                android:id="@+id/speakers"
 
-                android:id="@+id/live"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:src="@drawable/downloads" />
+                android:src="@drawable/talare"
+                android:contentDescription="TODO" />
+
+            <ImageView
+                android:id="@+id/live"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:src="@drawable/dwnlds"
+                android:contentDescription="TODO" />
 
 
         </LinearLayout>
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/splashscreen"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/splashscreen"
+        android:visibility="visible"
+        android:contentDescription="TODO" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="visible" />
+
+    <ProgressBar
+        android:id="@+id/progressBarLoadingWeb"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:visibility="invisible" />
+
 
 </RelativeLayout>

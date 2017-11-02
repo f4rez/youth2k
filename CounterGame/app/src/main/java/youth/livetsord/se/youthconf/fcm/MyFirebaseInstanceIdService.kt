@@ -1,4 +1,4 @@
-package youth.livetsord.se.countergame.fcm
+package youth.livetsord.se.youthconf.fcm
 
 /**
  * Created by Farez on 2017-07-13.
@@ -13,7 +13,8 @@ import com.github.kittinunf.fuel.Fuel
 
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.iid.FirebaseInstanceIdService
-import youth.livetsord.se.countergame.Constants
+import com.google.firebase.messaging.FirebaseMessaging
+import youth.livetsord.se.youthconf.Constants
 
 
 class MyFirebaseInstanceIDService : FirebaseInstanceIdService() {
@@ -32,7 +33,7 @@ class MyFirebaseInstanceIDService : FirebaseInstanceIdService() {
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
         // Instance ID token to your app server.
-        if(getSharedPreferences(Constants.fcm.fcmSharedpref, Context.MODE_PRIVATE).getBoolean(Constants.fcm.isRegistered, false)) {
+        if (getSharedPreferences(Constants.fcm.fcmSharedpref, Context.MODE_PRIVATE).getBoolean(Constants.fcm.isRegistered, false)) {
             val oldToken = getSharedPreferences(Constants.fcm.fcmSharedpref, Context.MODE_PRIVATE).getString(Constants.fcm.fcmToken, "")
             getSharedPreferences(Constants.fcm.fcmSharedpref, Context.MODE_PRIVATE).edit().putString(Constants.fcm.fcmToken, refreshedToken).apply()
             sendUpdatedRegistrationToServer(refreshedToken, oldToken)
@@ -52,40 +53,36 @@ class MyFirebaseInstanceIDService : FirebaseInstanceIdService() {
      */
     private fun sendRegistrationToServer(token: String, payload: String) {
         sendToServerAsynctask(token, payload, "user").execute()
+        FirebaseMessaging.getInstance().subscribeToTopic("all")
 
 
     }
 
     private fun sendUpdatedRegistrationToServer(token: String, payload: String) {
-        // TODO: Implement this method to send token to your app server.
-
+        sendToServerAsynctask(token, payload, "user").execute()
 
     }
 
     companion object {
 
-        private val TAG = "MyFirebaseIIDService"
+        private val TAG = "youthconf"
     }
 }
 
 
- class sendToServerAsynctask(val firebaseId : String, val payload : String, val type : String) : AsyncTask<String, Void, String>() {
+class sendToServerAsynctask(val firebaseId: String, val payload: String, val type: String) : AsyncTask<String, Void, String>() {
 
-    val host = "http://10.0.2.2:8080/"
+    val host = "http://Youthappredirect.livetsord.se:8080/"
 
 
     override fun doInBackground(vararg p0: String?): String {
         var mResponse = ""
         Fuel.post(host + type + "/" + firebaseId).body(payload).response { request, response, result ->
-            Log.d("tja", response.toString())
+            Log.d("Response", response.toString())
             mResponse = response.toString()
         }
-        Log.d("tja", mResponse)
+        Log.d("Response", mResponse)
         return mResponse
-    }
-
-    override fun onPostExecute(result: String?) {
-        super.onPostExecute(result)
     }
 
 }

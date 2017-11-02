@@ -1,6 +1,8 @@
-package youth.livetsord.se.countergame.fcm
+package youth.livetsord.se.youthconf.fcm
 
-import youth.livetsord.se.countergame.MainActivity
+import android.content.Intent
+import youth.livetsord.se.youthconf.Constants
+import youth.livetsord.se.youthconf.MainActivity
 
 
 /**
@@ -26,19 +28,20 @@ class MyFirebaseMessagingService : com.google.firebase.messaging.FirebaseMessagi
         // messages. For more see: https://firebase.google.com/docs/cloud-messaging/concept-options
         // [END_EXCLUDE]
 
-        // TODO(developer): Handle FCM messages here.
-        // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
-        android.util.Log.d(youth.livetsord.se.countergame.fcm.MyFirebaseMessagingService.Companion.TAG, "From: " + remoteMessage!!.from)
+
+        android.util.Log.d(TAG, "From: " + remoteMessage!!.from)
 
         // Check if message contains a data payload.
         if (remoteMessage.data.isNotEmpty()) {
-            android.util.Log.d(youth.livetsord.se.countergame.fcm.MyFirebaseMessagingService.Companion.TAG, "Message data payload: " + remoteMessage.data)
+            android.util.Log.d(TAG, "Message data payload: " + remoteMessage.data)
+            sendNotification(remoteMessage.notification.body, remoteMessage.data.getValue("link"))
 
         }
 
         // Check if message contains a notification payload.
         if (remoteMessage.notification != null) {
-            android.util.Log.d(youth.livetsord.se.countergame.fcm.MyFirebaseMessagingService.Companion.TAG, "Message Notification Body: " + remoteMessage.notification.body)
+            android.util.Log.d(TAG, "Message Notification Body: " + remoteMessage.notification.body)
+            sendNotification(remoteMessage.notification.body, remoteMessage.data.getValue("link"))
         }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
@@ -51,7 +54,7 @@ class MyFirebaseMessagingService : com.google.firebase.messaging.FirebaseMessagi
      * Handle time allotted to BroadcastReceivers.
      */
     private fun handleNow() {
-        android.util.Log.d(youth.livetsord.se.countergame.fcm.MyFirebaseMessagingService.Companion.TAG, "Short lived task is done.")
+        android.util.Log.d(TAG, "Short lived task is done.")
     }
 
     /**
@@ -59,16 +62,19 @@ class MyFirebaseMessagingService : com.google.firebase.messaging.FirebaseMessagi
 
      * @param messageBody FCM message body received.
      */
-    private fun sendNotification(messageBody: String) {
+    private fun sendNotification(messageBody: String, link: String?) {
         val intent = android.content.Intent(this, MainActivity::class.java)
-        intent.addFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        val pendingIntent = android.app.PendingIntent.getActivity(this, 0 /* Request code */, intent,
-                android.app.PendingIntent.FLAG_ONE_SHOT)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        intent.putExtra("link", link)
+        val pendingIntent = android.app.PendingIntent.getActivity(this, Constants.recuest.openLink, intent,
+                android.app.PendingIntent.FLAG_CANCEL_CURRENT)
+
 
         val defaultSoundUri = android.media.RingtoneManager.getDefaultUri(android.media.RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = android.support.v7.app.NotificationCompat.Builder(this)
-                .setSmallIcon(youth.livetsord.se.countergame.R.drawable.ic_arrow_downward_black_48dp)
-                .setContentTitle("FCM Message")
+                .setSmallIcon(youth.livetsord.se.youthconf.R.drawable.push_notification_icon)
+                .setContentTitle("Youth")
                 .setContentText(messageBody)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
@@ -81,6 +87,6 @@ class MyFirebaseMessagingService : com.google.firebase.messaging.FirebaseMessagi
 
     companion object {
 
-        private val TAG = "MyFirebaseMsgService"
+        private val TAG = "youthconf"
     }
 }
