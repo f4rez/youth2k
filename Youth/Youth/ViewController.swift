@@ -109,15 +109,19 @@ class ViewController: UIViewController, UIWebViewDelegate {
         print("Entered should load")
         if let mUrl = request.url?.absoluteString {
             if mUrl.hasSuffix(".png") || mUrl.hasSuffix(".jpg") {
-                let url = URL(string: mUrl)
-                let data = try? Data(contentsOf: url!)
-                if let img = UIImage(data: data!) {
-                    UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil);
-                    let alert = UIAlertController(title: "Bilden är sparad i din kamerarulle", message: "", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                } else {
-                    print("piss")
+                PHPhotoLibrary.requestAuthorization { status in
+                    if status == .authorized {
+                        let url = URL(string: mUrl)
+                        let data = try? Data(contentsOf: url!)
+                        if let img = UIImage(data: data!) {
+                            UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil);
+                            let alert = UIAlertController(title: "Bilden är sparad i din kamerarulle", message: "", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
+                        } else {
+                            print("piss")
+                        }
+                    }
                 }
                 return false
             }
@@ -127,10 +131,16 @@ class ViewController: UIViewController, UIWebViewDelegate {
     }
     
     func loadRequestWebview(mWebView: UIWebView, mUrl: String) {
+        var cachePoly = URLRequest.CachePolicy.returnCacheDataElseLoad
+
+        if mUrl.hasSuffix("/hem/") && checkIfNewDay() {
+            cachePoly = URLRequest.CachePolicy.reloadIgnoringCacheData
+        }
+        
         if counterWebview % 2 == 0 {
-            mWebView.loadRequest(URLRequest(url: URL(string: mUrl)!,cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 20.0))
+            mWebView.loadRequest(URLRequest(url: URL(string: mUrl)!,cachePolicy: cachePoly, timeoutInterval: 20.0))
         } else {
-            mWebView2.loadRequest(URLRequest(url: URL(string: mUrl)!,cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 20.0))
+            mWebView2.loadRequest(URLRequest(url: URL(string: mUrl)!,cachePolicy: cachePoly, timeoutInterval: 20.0))
         }
         
     }
@@ -223,6 +233,31 @@ class ViewController: UIViewController, UIWebViewDelegate {
             self.fade.alpha = 1.0
             self.bottombar.alpha = 1.0
         })
+    }
+    
+    
+    func checkIfNewDay() -> Bool {
+        let preferences = UserDefaults.standard
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "H d M"
+        let result = formatter.string(from: date)
+        let first = preferences.string(forKey: "DateSinceLastRefresh")
+        preferences.set(result, forKey: "DateSinceLastRefresh")
+        return compareStringDate(first: first ,second: result)
+    }
+    
+    
+    func compareStringDate(first: String?, second: String) -> Bool {
+        if first == nil {
+            return true
+        }
+        let firstArr = first!.components(separatedBy: " ")
+        let seccondArr = second.components(separatedBy: " ")
+        if Int(seccondArr[0])! > 20 && (Int(firstArr[0])! < 20) {
+            return true
+        }
+        return !(firstArr[1] == seccondArr[1]) && (firstArr[2] == seccondArr[2])
     }
 }
 

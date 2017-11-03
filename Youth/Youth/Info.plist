@@ -2,19 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Montserrat-Black.otf</string>
-		<string>Montserrat-Bold.otf</string>
-		<string>Montserrat-Light.otf</string>
-		<string>Montserrat-Regular.otf</string>
-	</array>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Spara ner bilder som du kan använda på sociala medier och som bakgrund</string>
-	<key>FirebaseAppDelegateProxyEnabled</key>
-	<false/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Youth</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -26,11 +17,13 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.0.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>5</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -39,14 +32,14 @@
 		<false/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>googleapis.com</key>
+			<key>18.194.136.218</key>
 			<dict>
-				<key>NSIncludesSubdomains</key>
-				<true/>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
 			</dict>
-			<key>18.194.136.218</key>
+			<key>googleapis.com</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
@@ -64,6 +57,17 @@
 			<string></string>
 		</dict>
 	</dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Spara ner bilder som du kan använda på sociala medier och som bakgrund</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Spara ner bilder som du kan använda på sociala medier eller som bakgrund</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Montserrat-Black.otf</string>
+		<string>Montserrat-Bold.otf</string>
+		<string>Montserrat-Light.otf</string>
+		<string>Montserrat-Regular.otf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

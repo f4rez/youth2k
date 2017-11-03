@@ -18,6 +18,7 @@ import android.view.animation.AnimationUtils
 import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebSettings.LOAD_CACHE_ELSE_NETWORK
+import android.webkit.WebSettings.LOAD_NO_CACHE
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
 
         home.setOnClickListener {
             if (!loading) {
-                if (!isNetworkAvailable()) mWebView.settings.cacheMode = LOAD_CACHE_ELSE_NETWORK
+                mWebView.settings.cacheMode = LOAD_CACHE_ELSE_NETWORK
                 loadUrl(Constants.Urls.home)
                 // loading offline
                 unHighlight()
@@ -69,7 +70,7 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
 
         speakers.setOnClickListener {
             if (!loading) {
-                if (!isNetworkAvailable()) mWebView.settings.cacheMode = LOAD_CACHE_ELSE_NETWORK
+                mWebView.settings.cacheMode = LOAD_CACHE_ELSE_NETWORK
                 loadUrl(Constants.Urls.speakers)
                 unHighlight()
                 speakers.setImageResource(R.drawable.talare_vit)
@@ -78,7 +79,7 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
 
         schedule.setOnClickListener {
             if (!loading) {
-                if (!isNetworkAvailable()) mWebView.settings.cacheMode = LOAD_CACHE_ELSE_NETWORK
+                mWebView.settings.cacheMode = LOAD_CACHE_ELSE_NETWORK
                 loadUrl(Constants.Urls.schedule)
                 unHighlight()
                 schedule.setImageResource(R.drawable.schema_vit)
@@ -87,7 +88,7 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
 
         live.setOnClickListener {
             if (!loading) {
-                if (!isNetworkAvailable()) mWebView.settings.cacheMode = LOAD_CACHE_ELSE_NETWORK
+                mWebView.settings.cacheMode = LOAD_CACHE_ELSE_NETWORK
                 loadUrl(Constants.Urls.downloads)
                 unHighlight()
                 live.setImageResource(R.drawable.dwnlds_vit)
@@ -268,9 +269,16 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
         loading = true
         startSpinner()
 
+
         if (count % 2 == 0) {
             Log.d(tag, "loadUrl - current: " + mWebView2.url + ", load: " + url)
             if (url != mWebView2.url) {
+                if (url.endsWith("/hem/")) {
+                    mWebView.settings.cacheMode = LOAD_NO_CACHE
+                } else {
+                    mWebView.settings.cacheMode = LOAD_CACHE_ELSE_NETWORK
+
+                }
                 mWebView.loadUrl(url)
             } else {
                 loading = false
@@ -280,6 +288,11 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
             Log.d(tag, "loadUrl - current2: " + mWebView.url + ", load: " + url)
 
             if (url != mWebView.url) {
+                if (url.endsWith("/hem/")) {
+                    mWebView2.settings.cacheMode = LOAD_NO_CACHE
+                } else {
+                    mWebView.settings.cacheMode = LOAD_CACHE_ELSE_NETWORK
+                }
                 mWebView2.loadUrl(url)
             } else {
                 loading = false

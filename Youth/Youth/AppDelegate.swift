@@ -122,6 +122,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @objc func sendFCMToServer() {
         if let token = Messaging.messaging().fcmToken {
             print("Sending fcm to Server", token)
+            Messaging.messaging().subscribe(toTopic:"all")
+
             var request = URLRequest(url: URL(string: "http://Youthappredirect.livetsord.se:8080/user/" + token)!)
             request.httpMethod = "POST"
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
