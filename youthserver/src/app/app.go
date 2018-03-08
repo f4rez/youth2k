@@ -1,22 +1,31 @@
 package app
 
 import (
-	"database/sql"
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
 
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"youth2k/youthserver/src/users"
 
+	"golang.org/x/net/context"
+
+	firebase "firebase.google.com/go"
+	//"firebase.google.com/go/auth"
+	"google.golang.org/api/option"
+
 	"github.com/gorilla/mux"
-	_ "github.com/lib/pq"
 )
 
 type App struct {
-	Router *mux.Router
-	DB     *sql.DB
+	OpenRouter   *mux.Router
+	ClosedRouter *mux.Router
+
+	DB  *gorm.DB
+	Fir *firebase.App
 }
 
 func respondWithError(w http.ResponseWriter, code int, message string) {
@@ -32,11 +41,14 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 }
 
 func (a *App) createUser(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	usr := users.MyUser{Firebase_id: vars["id"]}
-	log.Println("CreateUser: " + usr.Firebase_id)
-	err := usr.CreateUser(a.DB)
-	log.Println("ret")
+	decoder := json.NewDecoder(r.Body)
+	var usr users.MyUser
+	err := decoder.Decode(&usr)
+	if err != nil {
+		respondWithError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	err = usr.CreateUser(a.DB)
 	if err != nil {
 		respondWithError(w, http.StatusBadRequest, err.Error())
 		return
@@ -73,6 +85,14 @@ func (a *App) allHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "all")
 }
 
+func (a *App) getUsers(w http.ResponseWriter, r *http.Request) {
+	usr, err := users.GetUsers(a.DB, 3)
+	if err != nil {
+		respondWithError(w, http.StatusBadRequest, err.Error())
+	}
+	respondWithJSON(w, http.StatusOK, usr)
+}
+
 func (a *App) pwMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		vars := mux.Vars(r)
@@ -88,20 +108,28 @@ func (a *App) pwMiddleware(next http.Handler) http.Handler {
 
 func (a *App) InitializeRouters() {
 	a.Router.Handle("/user/deleteAll/{pw}", a.pwMiddleware(http.HandlerFunc(a.clearUserTable)))
-	a.Router.HandleFunc("/user/{id}", a.createUser).Methods("POST")
+	a.Router.HandleFunc("/user/", a.createUser).Methods("POST")
 	a.Router.HandleFunc("/user/{id}", a.getUser).Methods("GET")
 	a.Router.HandleFunc("/user/{id}", a.deleteUser).Methods("DELETE")
-
+	a.Router.HandleFunc("/users", a.getUsers).Methods("GET")
 	a.Router.HandleFunc("/", a.allHandler)
 }
 
 func (a *App) Initialize(user, password, dbname string) {
-	var db, err = sql.Open("postgres", "host=youth2k.c7ygvmc8gmni.eu-central-1.rds.amazonaws.com"+" user="+user+" dbname="+dbname+" password="+password+" sslmode=disable")
+	var db, err = gorm.Open("postgres", "host=localhost"+" user="+user+" dbname="+dbname+" password="+password+" sslmode=disable")
+	db.AutoMigrate(&users.MyUser{})
 	if err != nil {
 		log.Fatal(err)
 	}
+	opt := option.WithCredentialsFile("youth-conf-firebase-adminsdk-0cwca-7d1d7464f1.json")
+	app, err := firebase.NewApp(context.Background(), nil, opt)
+	if err != nil {
+		log.Fatalf("error initializing app: %v\n", err)
+	}
+	a.Fir = app
 	a.DB = db
-	a.Router = mux.NewRouter()
+	a.OpenRouter = mux.NewRouter()
+	a.ClosedRouter = mux.NewRouter()
 	a.InitializeRouters()
 
 }

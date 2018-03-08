@@ -1,43 +1,59 @@
 package users
 
 import (
-	"database/sql"
 	"errors"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"log"
+	"math/rand"
+	"time"
 )
 
 type MyUser struct {
-	Firebase_id string `json:"fid"`
+	gorm.Model
+	Firebase_id string `gorm:"unique;not null;index:fid"`
+	Name        string
 }
 
-const tableCreationQuery = `CREATE TABLE IF NOT EXSIST mUser(	
-					firebase_id text PRIMARY KEY,
-					);
-)`
-
-func (usr *MyUser) GetUser(db *sql.DB) error {
-	return db.QueryRow("SELECT * FROM mUser WHERE firebase_id=$1",
-		usr.Firebase_id).Scan(&usr.Firebase_id)
+func (usr *MyUser) GetUser(db *gorm.DB) error {
+	return db.Where("Firebase_id = ?", usr.Firebase_id).First(usr).Error
 }
 
-func (usr *MyUser) DeleteUser(db *sql.DB) error {
-	_, err := db.Exec("DELETE FROM mUser WHERE firebase_id=$1", usr.Firebase_id)
+func (usr *MyUser) DeleteUser(db *gorm.DB) error {
+	/*_, err := db.Exec("DELETE FROM mUser WHERE firebase_id=$1", usr.Firebase_id)
+	 */
+	return nil
 
-	return err
 }
 
-func (usr *MyUser) CreateUser(db *sql.DB) error {
-	_, err := db.Exec(`INSERT INTO mUser (firebase_id) 
-							VALUES ($1)`,
-		usr.Firebase_id)
-	return err
+func (usr *MyUser) CreateUser(db *gorm.DB) error {
+	if usr.Firebase_id != "" {
+		log.Println(usr)
+		db.Create(usr)
+		return nil
+	}
+	return errors.New("No firebaseID")
+
 }
 
 //Probably not needed
-func GetUsers(db *sql.DB, start, count int) ([]MyUser, error) {
-	return nil, errors.New("Not implemented")
+func GetUsers(db *gorm.DB, count int) ([]MyUser, error) {
+	rand.Seed(time.Now().UTC().UnixNano())
+	max := 0
+	db.Model(&MyUser{}).Count(&max)
+	mUsers := make([]MyUser, count)
+	finished := 0
+	for finished < count {
+		var usr MyUser
+		if err := db.Where("id = ? ", rand.Intn(max)).Find(&usr).Error; err != nil {
+			continue
+		}
+		mUsers[finished] = usr
+		finished++
+	}
+	return mUsers, nil
 }
 
-func ClearUserTable(db *sql.DB) error {
-	_, err := db.Exec("DELETE FROM mUser")
-	return err
+func ClearUserTable(db *gorm.DB) error {
+	return nil
 }
