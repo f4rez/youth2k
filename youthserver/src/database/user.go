@@ -9,24 +9,34 @@ import (
 	"time"
 )
 
+type UserStore struct {
+	db *pg.DB
+}
+
 type MyUser struct {
 	gorm.Model
 	Firebase_id string `gorm:"unique;not null;index:fid"`
 	Name        string
 }
 
-func (usr *MyUser) GetUser(db *gorm.DB) error {
-	return db.Where("Firebase_id = ?", usr.Firebase_id).First(usr).Error
+func NewUserStore(db *pg.DB) *UserStore {
+	return &UserStore{
+		db: db,
+	}
 }
 
-func (usr *MyUser) DeleteUser(db *gorm.DB) error {
-	/*_, err := db.Exec("DELETE FROM mUser WHERE firebase_id=$1", usr.Firebase_id)
-	 */
+func (c *UserStore) GetUser(usr *MyUser) error {
+	return c.db.Where("Firebase_id = ?", usr.Firebase_id).First(usr).Error
+}
+
+func (c *UserStore) DeleteUser(usr *MyUser) error {
+	_, err := db.Exec("DELETE FROM mUser WHERE firebase_id=$1", usr.Firebase_id)
+
 	return nil
 
 }
 
-func (usr *MyUser) CreateUser(db *gorm.DB) error {
+func (c *UserStore) CreateUser(usr *MyUser) error {
 	if usr.Firebase_id != "" {
 		log.Println(usr)
 		db.Create(usr)
