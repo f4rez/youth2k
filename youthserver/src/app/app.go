@@ -9,7 +9,6 @@ import (
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
-	"youth2k/youthserver/src/users"
 
 	"golang.org/x/net/context"
 
@@ -21,11 +20,10 @@ import (
 )
 
 type App struct {
-	OpenRouter   *mux.Router
-	ClosedRouter *mux.Router
-
-	DB  *gorm.DB
-	Fir *firebase.App
+	Router *mux.Router
+	api    *API
+	DB     *gorm.DB
+	Fir    *firebase.App
 }
 
 func respondWithError(w http.ResponseWriter, code int, message string) {
@@ -40,7 +38,7 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 	w.Write(response)
 }
 
-func (a *App) createUser(w http.ResponseWriter, r *http.Request) {
+/*func (a *App) createUser(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	var usr users.MyUser
 	err := decoder.Decode(&usr)
@@ -80,10 +78,7 @@ func (a *App) clearUserTable(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func (a *App) allHandler(w http.ResponseWriter, r *http.Request) {
-	log.Println("All")
-	fmt.Fprint(w, "all")
-}
+
 
 func (a *App) getUsers(w http.ResponseWriter, r *http.Request) {
 	usr, err := users.GetUsers(a.DB, 3)
@@ -93,6 +88,12 @@ func (a *App) getUsers(w http.ResponseWriter, r *http.Request) {
 	respondWithJSON(w, http.StatusOK, usr)
 }
 
+*/
+
+func (a *App) allHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("All")
+	fmt.Fprint(w, "all")
+}
 func (a *App) pwMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		vars := mux.Vars(r)
@@ -107,17 +108,25 @@ func (a *App) pwMiddleware(next http.Handler) http.Handler {
 }
 
 func (a *App) InitializeRouters() {
-	a.Router.Handle("/user/deleteAll/{pw}", a.pwMiddleware(http.HandlerFunc(a.clearUserTable)))
-	a.Router.HandleFunc("/user/", a.createUser).Methods("POST")
-	a.Router.HandleFunc("/user/{id}", a.getUser).Methods("GET")
-	a.Router.HandleFunc("/user/{id}", a.deleteUser).Methods("DELETE")
-	a.Router.HandleFunc("/users", a.getUsers).Methods("GET")
 	a.Router.HandleFunc("/", a.allHandler)
+	countString := "/countdowns"
+	a.Router.PathPrefix(countString).Handler(http.StripPrefix(countString, a.api.Cntd.GetRouter(a.pwMiddleware)))
+	downloadsString := "/downloads"
+	a.Router.PathPrefix(downloadsString).Handler(http.StripPrefix(downloadsString, a.api.Dwnl.GetRouter(a.pwMiddleware)))
+	scheduleString := "/schedule"
+	a.Router.PathPrefix(scheduleString).Handler(http.StripPrefix(scheduleString, a.api.Shdl.GetRouter(a.pwMiddleware)))
+	userString := "/user"
+	a.Router.PathPrefix(userString).Handler(http.StripPrefix(userString, a.api.Usr.GetRouter(a.pwMiddleware)))
+	speakerString := "/speakers"
+	a.Router.PathPrefix(speakerString).Handler(http.StripPrefix(speakerString, a.api.Spek.GetRouter(a.pwMiddleware)))
+	controlString := "/control"
+	a.Router.PathPrefix(controlString).Handler(http.StripPrefix(controlString, a.api.Ctlr.GetRouter(a.pwMiddleware)))
+
 }
 
 func (a *App) Initialize(user, password, dbname string) {
 	var db, err = gorm.Open("postgres", "host=localhost"+" user="+user+" dbname="+dbname+" password="+password+" sslmode=disable")
-	db.AutoMigrate(&users.MyUser{})
+	//db.AutoMigrate(&users.MyUser{})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -128,8 +137,14 @@ func (a *App) Initialize(user, password, dbname string) {
 	}
 	a.Fir = app
 	a.DB = db
-	a.OpenRouter = mux.NewRouter()
-	a.ClosedRouter = mux.NewRouter()
+	a.Router = mux.NewRouter()
+
+	api, err := NewApi(db)
+
+	a.api = api
+	if err != nil {
+		log.Fatalf("Error initializing api: %v\n", err)
+	}
 	a.InitializeRouters()
 
 }
@@ -139,5 +154,4 @@ func (a *App) Run(addr string) {
 	if err != nil {
 		log.Fatal("ListenAndServe error: ", err)
 	}
-
 }
